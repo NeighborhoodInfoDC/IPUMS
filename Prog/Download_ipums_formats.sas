@@ -12,25 +12,24 @@
  Modifications:
 **************************************************************************/
 
-%include "K:\Metro\PTatian\DCData\SAS\Inc\Stdhead.sas";
-%include "K:\Metro\PTatian\DCData\SAS\Inc\AlphaSignon.sas" /nosource2;
+%include "L:\SAS\Inc\StdLocal.sas";
 
 ** Define libraries **;
 %DCData_lib( Ipums )
 
 ** Start submitting commands to remote server **;
 
-rsubmit;
+/*rsubmit;*/
 
-proc download status=no
+/*proc download status=no
   inlib=Ipums 
   outlib=Ipums memtype=(catalog);
   select formats;
-run;
+run;*/
 
-run;
+/*run;*/
 
-endrsubmit;
+/*endrsubmit;*/
 
 ** End submitting commands to remote server **;
 
@@ -40,4 +39,4 @@ quit;
 
 run;
 
-signoff;
+/*signoff;*/
