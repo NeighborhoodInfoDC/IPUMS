@@ -1,13 +1,13 @@
 /**************************************************************************
- Program:  Acs_<year>_pmsa99.sas
+ Program:  Acs_2010_14_pmsa99.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
- Author:   
- Created:  
+ Author:   M. Woluchem	
+ Created:  07/21/16
  Version:  SAS 9.2
  Environment:  Windows with SAS/Connect
  
- Description: Create SAS view of IPUMS <year> data for Wash. region
+ Description: Create SAS view of IPUMS 2010-14 data for Wash. region
  (PMSA 1999).
 
  Modifications: 
@@ -27,14 +27,14 @@
 
 %let revisions = %str(New file.);
 
-data Ipums.Acs_<year>_pmsa99 
-  (label="ACS microdata, <year>, Washington, D.C. PMSA (1999)") / view=Ipums.Acs_<year>_pmsa99;
+data Ipums.Acs_2010_14_pmsa99 
+  (label="ACS microdata, 2010-14, Washington, D.C. PMSA (1999)"); /*/ view=Ipums.Acs_2010_14_pmsa99;*/
 
   set 
-    Ipums.Acs_<year>_dc
-    Ipums.Acs_<year>_md
-    Ipums.Acs_<year>_va
-    Ipums.Acs_<year>_wv;
+    Ipums.Acs_2010_14_dc
+    Ipums.Acs_2010_14_md
+    Ipums.Acs_2010_14_va
+    Ipums.Acs_2010_14_wv;
     
   by serial;
 
@@ -48,7 +48,7 @@ run;
 
 ** File info **;
 
-%File_info( data=Ipums.Acs_<year>_pmsa99, printobs=5, freqvars=statefip acre: )
+%File_info( data=Ipums.Acs_2010_14_pmsa99, printobs=5, freqvars=statefip acre: )
 
 run;
 
@@ -56,8 +56,8 @@ run;
 
 %Dc_update_meta_file(
   ds_lib=Ipums,
-  ds_name=Acs_<year>_pmsa99,
-  creator_process=Acs_<year>_pmsa99.sas,
+  ds_name=Acs_2010_14_pmsa99,
+  creator_process=Acs_2010_14_pmsa99.sas,
   restrictions=None,
   revisions=%str(&revisions)
 )

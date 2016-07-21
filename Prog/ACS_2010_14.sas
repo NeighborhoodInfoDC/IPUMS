@@ -31,18 +31,13 @@ options mprint symbolgen mlogic;
 %let FIPS_VA = '51';
 %let FIPS_WV = '54';
 
-filename asciidat "D:\DCData\Libraries\IPUMS\Raw\usa_00001.dat";
+*filename asciidat "&_dcdata_path\ipums\raw\usa_00001.dat"; /**In order for the program to work, I rewrote the path to direct
+to the D drive. Need to clarify with Peter where exactly the Raw data should sit, as this program writes to the D drive*/
 
-data 
-  ipums.ACS_&yr._DC /*(label="IPUMS ACS sample, &yr_dash., DC")*/
-  ipums.ACS_&yr._MD /*((label="IPUMS ACS sample, &yr_dash., MD")*/
-  ipums.ACS_&yr._VA /*((label="IPUMS ACS sample, &yr_dash., VA")*/
-  ipums.ACS_&yr._WV /*((label="IPUMS ACS sample, &yr_dash., WV")*/
-  ;
+filename hhdat "D:\DCData\Libraries\IPUMS\Raw\usa_00001.dat";
 
-/**** COPY INFILE, INPUT, AND LABEL STATEMENTS FROM DOWNLOADED SAS PROGRAM HERE ****/
-
-  infile ASCIIDAT pad missover lrecl=727;
+data ipums_hh;
+infile hhdat pad missover lrecl=727;
 
 input
   RECTYPE     $ 1-1
@@ -214,8 +209,329 @@ input
   PERWT         718-727 .2
 ;
 
+run;
+
+filename persdat "D:\DCData\Libraries\IPUMS\Raw\usa_00002.dat";
+data ipums_pers;
+infile persdat pad missover lrecl=935;
+
+input
+  YEAR          1-4
+  DATANUM       5-6
+  SERIAL        7-14
+  HHWT          15-24 .2
+  REGION        25-26
+  STATEICP      27-28
+  STATEFIP      29-30
+  COUNTY        31-34
+  COUNTYFIPS    35-37
+  METRO         38-38
+  MET2013       39-43
+  MET2013ERR    44-44
+  CITY          45-48
+  CITYERR       49-49
+  PUMA          50-54
+  PUMARES2MIG   55-59
+  CPUMA0010     60-63
+  HOMELAND      64-64
+  CNTRY         65-67
+  GQ            68-68
+  PERNUM        69-72
+  PERWT         73-82 .2
+  SLWT          83-92 .2
+  REPWTP        93-93
+  FAMSIZE       94-95
+  NCHILD        96-96
+  NCHLT5        97-97
+  FAMUNIT       98-99
+  ELDCH         100-101
+  YNGCH         102-103
+  NSIBS         104-104
+  MOMLOC        105-106
+  STEPMOM       107-107
+  MOMRULE       108-108
+  POPLOC        109-110
+  STEPPOP       111-111
+  POPRULE       112-112
+  SPLOC         113-114
+  SPRULE        115-115
+  SUBFAM        116-116
+  SFTYPE        117-117
+  SFRELATE      118-118
+  CBSUBFAM      119-119
+  CBSFTYPE      120-120
+  CBSFRELATE    121-121
+  RELATE        122-123
+  RELATED       124-127
+  SEX           128-128
+  AGE           129-131
+  BIRTHQTR      132-132
+  MARST         133-133
+  BIRTHYR       134-137
+  MARRNO        138-138
+  MARRINYR      139-139
+  YRMARR        140-143
+  DIVINYR       144-144
+  WIDINYR       145-145
+  FERTYR        146-146
+  RACE          147-147
+  RACED         148-150
+  HISPAN        151-151
+  HISPAND       152-154
+  BPL           155-157
+  BPLD          158-162
+  ANCESTR1      163-165
+  ANCESTR1D     166-169
+  ANCESTR2      170-172
+  ANCESTR2D     173-176
+  CITIZEN       177-177
+  YRNATUR       178-181
+  YRIMMIG       182-185
+  YRSUSA1       186-187
+  YRSUSA2       188-188
+  LANGUAGE      189-190
+  LANGUAGED     191-194
+  SPEAKENG      195-195
+  TRIBE         196-199
+  TRIBED        200-205
+  RACAMIND      206-206
+  RACASIAN      207-207
+  RACBLK        208-208
+  RACPACIS      209-209
+  RACWHT        210-210
+  RACOTHER      211-211
+  RACNUM        212-212
+  HCOVANY       213-213
+  HCOVPRIV      214-214
+  HINSEMP       215-215
+  HINSPUR       216-216
+  HINSTRI       217-217
+  HCOVPUB       218-218
+  HINSCAID      219-219
+  HINSCARE      220-220
+  HINSVA        221-221
+  HINSIHS       222-222
+  HCOVANY2      223-223
+  HCOVPRIV2     224-224
+  HINSEMP2      225-225
+  HINSPUR2      226-226
+  HINSTRI2      227-227
+  HCOVPUB2      228-228
+  HINSCAID2     229-229
+  HINSCARE2     230-230
+  HINSVA2       231-231
+  HINSIHS2      232-232
+  SCHOOL        233-233
+  EDUC          234-235
+  EDUCD         236-238
+  GRADEATT      239-239
+  GRADEATTD     240-241
+  SCHLTYPE      242-242
+  EMPSTAT       243-243
+  EMPSTATD      244-245
+  LABFORCE      246-246
+  OCC           247-250
+  OCC1950       251-253
+  OCC1990       254-256
+  OCC2010       257-260
+  IND           261-264
+  IND1950       265-267
+  IND1990       268-270
+  CLASSWKR      271-271
+  CLASSWKRD     272-273
+  OCCSOC      $ 274-279
+  INDNAICS    $ 280-287
+  WKSWORK2      288-288
+  UHRSWORK      289-290
+  WRKLSTWK      291-291
+  ABSENT        292-292
+  LOOKING       293-293
+  AVAILBLE      294-294
+  WRKRECAL      295-295
+  WORKEDYR      296-296
+  INCTOT        297-303
+  FTOTINC       304-310
+  INCWAGE       311-316
+  INCBUS00      317-322
+  INCSS         323-327
+  INCWELFR      328-332
+  INCINVST      333-338
+  INCRETIR      339-344
+  INCSUPP       345-349
+  INCOTHER      350-354
+  INCEARN       355-361
+  POVERTY       362-364
+  OCCSCORE      365-366
+  SEI           367-368
+  PRESGL        369-371 .1
+  PRENT         372-374 .1
+  ERSCOR50      375-378 .1
+  ERSCOR90      379-382 .1
+  EDSCOR50      383-386 .1
+  EDSCOR90      387-390 .1
+  NPBOSS50      391-394 .1
+  NPBOSS90      395-398 .1
+  MIGRATE1      399-399
+  MIGRATE1D     400-401
+  MIGPLAC1      402-404
+  MIGPUMA1      405-409
+  MOVEDIN       410-410
+  VETDISAB      411-411
+  DIFFREM       412-412
+  DIFFPHYS      413-413
+  DIFFMOB       414-414
+  DIFFCARE      415-415
+  DIFFSENS      416-416
+  DIFFEYE       417-417
+  DIFFHEAR      418-418
+  VETSTAT       419-419
+  VETSTATD      420-421
+  VET01LTR      422-422
+  VET90X01      423-423
+  VET75X90      424-424
+  VETVIETN      425-425
+  VET55X64      426-426
+  VETKOREA      427-427
+  VET47X50      428-428
+  VETWWII       429-429
+  VETOTHER      430-430
+  PWSTATE2      431-432
+  PWPUMA00      433-437
+  TRANWORK      438-439
+  CARPOOL       440-440
+  RIDERS        441-441
+  TRANTIME      442-444
+  DEPARTS       445-448
+  ARRIVES       449-452
+  GCHOUSE       453-453
+  GCMONTHS      454-454
+  GCRESPON      455-455
+  REPWTP1       456-461
+  REPWTP2       462-467
+  REPWTP3       468-473
+  REPWTP4       474-479
+  REPWTP5       480-485
+  REPWTP6       486-491
+  REPWTP7       492-497
+  REPWTP8       498-503
+  REPWTP9       504-509
+  REPWTP10      510-515
+  REPWTP11      516-521
+  REPWTP12      522-527
+  REPWTP13      528-533
+  REPWTP14      534-539
+  REPWTP15      540-545
+  REPWTP16      546-551
+  REPWTP17      552-557
+  REPWTP18      558-563
+  REPWTP19      564-569
+  REPWTP20      570-575
+  REPWTP21      576-581
+  REPWTP22      582-587
+  REPWTP23      588-593
+  REPWTP24      594-599
+  REPWTP25      600-605
+  REPWTP26      606-611
+  REPWTP27      612-617
+  REPWTP28      618-623
+  REPWTP29      624-629
+  REPWTP30      630-635
+  REPWTP31      636-641
+  REPWTP32      642-647
+  REPWTP33      648-653
+  REPWTP34      654-659
+  REPWTP35      660-665
+  REPWTP36      666-671
+  REPWTP37      672-677
+  REPWTP38      678-683
+  REPWTP39      684-689
+  REPWTP40      690-695
+  REPWTP41      696-701
+  REPWTP42      702-707
+  REPWTP43      708-713
+  REPWTP44      714-719
+  REPWTP45      720-725
+  REPWTP46      726-731
+  REPWTP47      732-737
+  REPWTP48      738-743
+  REPWTP49      744-749
+  REPWTP50      750-755
+  REPWTP51      756-761
+  REPWTP52      762-767
+  REPWTP53      768-773
+  REPWTP54      774-779
+  REPWTP55      780-785
+  REPWTP56      786-791
+  REPWTP57      792-797
+  REPWTP58      798-803
+  REPWTP59      804-809
+  REPWTP60      810-815
+  REPWTP61      816-821
+  REPWTP62      822-827
+  REPWTP63      828-833
+  REPWTP64      834-839
+  REPWTP65      840-845
+  REPWTP66      846-851
+  REPWTP67      852-857
+  REPWTP68      858-863
+  REPWTP69      864-869
+  REPWTP70      870-875
+  REPWTP71      876-881
+  REPWTP72      882-887
+  REPWTP73      888-893
+  REPWTP74      894-899
+  REPWTP75      900-905
+  REPWTP76      906-911
+  REPWTP77      912-917
+  REPWTP78      918-923
+  REPWTP79      924-929
+  REPWTP80      930-935
+;
+run;
+
+/**Test Merge to confirm no duplicates**/
+data test;
+	merge ipums_hh ipums_pers;
+	by serial;
+	run;
+
+data hh_first100;
+	set ipums_hh(obs=100);
+	run;
+
+data pers_first100;
+	set ipums_pers(obs=100);
+	run;
+
+data test_first100;
+	set test(obs=100);
+	run;
+
+proc freq data=hh_first100;
+	tables serial*pernum/list missing;
+	run;
+
+proc freq data=pers_first100;
+	tables serial*pernum/list missing;
+	run;
+
+proc freq data=test_first100;
+	tables serial*pernum/list missing;
+	run;
+
+data
+  ipums.ACS_&yr._DC /*(label="IPUMS ACS sample, &yr_dash., DC")*/
+  ipums.ACS_&yr._MD /*((label="IPUMS ACS sample, &yr_dash., MD")*/
+  ipums.ACS_&yr._VA /*((label="IPUMS ACS sample, &yr_dash., VA")*/
+  ipums.ACS_&yr._WV /*((label="IPUMS ACS sample, &yr_dash., WV")*/
+  ;
+
+/**** COPY INFILE, INPUT, AND LABEL STATEMENTS FROM DOWNLOADED SAS PROGRAM HERE ****/
+merge ipums_hh ipums_pers;
+by serial;
+
 label
-  RECTYPE     = "Record type"
+ RECTYPE     = "Record type"
   YEAR        = "Census year"
   MULTYEAR    = "Actual year of survey, multi-year ACS/PRCS"
   DATANUM     = "Data set number"
@@ -382,6 +698,276 @@ label
   RESPMODE    = "Response mode"
   PERNUM      = "Person number in sample unit"
   PERWT       = "Person weight"
+  YEAR        = "Census year"
+  DATANUM     = "Data set number"
+  SERIAL      = "Household serial number"
+  HHWT        = "Household weight"
+  REGION      = "Census region and division"
+  STATEICP    = "State (ICPSR code)"
+  STATEFIP    = "State (FIPS code)"
+  COUNTY      = "County"
+  COUNTYFIPS  = "County (FIPS code)"
+  METRO       = "Metropolitan status"
+  MET2013     = "Metropolitan area, 2013 OMB delineations"
+  MET2013ERR  = "Coverage error in MET2013 variable"
+  CITY        = "City"
+  CITYERR     = "Coverage error in CITY variable"
+  PUMA        = "Public Use Microdata Area"
+  PUMARES2MIG = "Public Use Microdata Area matching MIGPUMA"
+  CPUMA0010   = "Consistent PUMA, 2000-2010"
+  HOMELAND    = "American Indian, Alaska Native, or Native Hawaiian homeland area"
+  CNTRY       = "Country"
+  GQ          = "Group quarters status"
+  PERNUM      = "Person number in sample unit"
+  PERWT       = "Person weight"
+  SLWT        = "Sample-line weight"
+  REPWTP      = "Person replicate weights"
+  FAMSIZE     = "Number of own family members in household"
+  NCHILD      = "Number of own children in the household"
+  NCHLT5      = "Number of own children under age 5 in household"
+  FAMUNIT     = "Family unit membership"
+  ELDCH       = "Age of eldest own child in household"
+  YNGCH       = "Age of youngest own child in household"
+  NSIBS       = "Number of own siblings in household"
+  MOMLOC      = "Mother's location in the household"
+  STEPMOM     = "Probable step/adopted mother"
+  MOMRULE     = "Rule for linking mother"
+  POPLOC      = "Father's location in the household"
+  STEPPOP     = "Probable step/adopted father"
+  POPRULE     = "Rule for linking father"
+  SPLOC       = "Spouse's location in household"
+  SPRULE      = "Rule for linking spouse"
+  SUBFAM      = "Subfamily membership"
+  SFTYPE      = "Subfamily type"
+  SFRELATE    = "Relationship within subfamily"
+  CBSUBFAM    = "Subfamily number (original Census Bureau classification)"
+  CBSFTYPE    = "Subfamily type (original Census Bureau classification)"
+  CBSFRELATE  = "Subfamily relationship (original Census Bureau classification)"
+  RELATE      = "Relationship to household head [general version]"
+  RELATED     = "Relationship to household head [detailed version]"
+  SEX         = "Sex"
+  AGE         = "Age"
+  BIRTHQTR    = "Quarter of birth"
+  MARST       = "Marital status"
+  BIRTHYR     = "Year of birth"
+  MARRNO      = "Times married"
+  MARRINYR    = "Married within the past year"
+  YRMARR      = "Year married"
+  DIVINYR     = "Divorced in the past year"
+  WIDINYR     = "Widowed in the past year"
+  FERTYR      = "Children born within the last year"
+  RACE        = "Race [general version]"
+  RACED       = "Race [detailed version]"
+  HISPAN      = "Hispanic origin [general version]"
+  HISPAND     = "Hispanic origin [detailed version]"
+  BPL         = "Birthplace [general version]"
+  BPLD        = "Birthplace [detailed version]"
+  ANCESTR1    = "Ancestry, first response [general version]"
+  ANCESTR1D   = "Ancestry, first response [detailed version]"
+  ANCESTR2    = "Ancestry, second response [general version]"
+  ANCESTR2D   = "Ancestry, second response [detailed version]"
+  CITIZEN     = "Citizenship status"
+  YRNATUR     = "Year naturalized"
+  YRIMMIG     = "Year of immigration"
+  YRSUSA1     = "Years in the United States"
+  YRSUSA2     = "Years in the United States, intervalled"
+  LANGUAGE    = "Language spoken [general version]"
+  LANGUAGED   = "Language spoken [detailed version]"
+  SPEAKENG    = "Speaks English"
+  TRIBE       = "Tribe [general version]"
+  TRIBED      = "Tribe [detailed version]"
+  RACAMIND    = "Race: American Indian or Alaska Native"
+  RACASIAN    = "Race: Asian"
+  RACBLK      = "Race: black or African American"
+  RACPACIS    = "Race: Pacific Islander"
+  RACWHT      = "Race: white"
+  RACOTHER    = "Race: some other race"
+  RACNUM      = "Number of major race groups"
+  HCOVANY     = "Any health insurance coverage"
+  HCOVPRIV    = "Private health insurance coverage"
+  HINSEMP     = "Health insurance through employer/union"
+  HINSPUR     = "Health insurance purchased directly"
+  HINSTRI     = "Health insurance through TRICARE"
+  HCOVPUB     = "Public health insurance coverage"
+  HINSCAID    = "Health insurance through Medicaid"
+  HINSCARE    = "Health insurance through Medicare"
+  HINSVA      = "Health insurance through VA"
+  HINSIHS     = "Health insurance through Indian Health Services"
+  HCOVANY2    = "Any health insurance coverage (original)"
+  HCOVPRIV2   = "Private health insurance coverage (original)"
+  HINSEMP2    = "Health insurance through employer/union (original)"
+  HINSPUR2    = "Health insurance purchased directly (original)"
+  HINSTRI2    = "Health insurance through TRICARE (original)"
+  HCOVPUB2    = "Public health insurance coverage (original)"
+  HINSCAID2   = "Health insurance through Medicaid (original)"
+  HINSCARE2   = "Health insurance through Medicare (original)"
+  HINSVA2     = "Health insurance through VA (original)"
+  HINSIHS2    = "Health insurance through Indian Health Services (original)"
+  SCHOOL      = "School attendance"
+  EDUC        = "Educational attainment [general version]"
+  EDUCD       = "Educational attainment [detailed version]"
+  GRADEATT    = "Grade level attending [general version]"
+  GRADEATTD   = "Grade level attending [detailed version]"
+  SCHLTYPE    = "Public or private school"
+  EMPSTAT     = "Employment status [general version]"
+  EMPSTATD    = "Employment status [detailed version]"
+  LABFORCE    = "Labor force status"
+  OCC         = "Occupation"
+  OCC1950     = "Occupation, 1950 basis"
+  OCC1990     = "Occupation, 1990 basis"
+  OCC2010     = "Occupation, 2010 basis"
+  IND         = "Industry"
+  IND1950     = "Industry, 1950 basis"
+  IND1990     = "Industry, 1990 basis"
+  CLASSWKR    = "Class of worker [general version]"
+  CLASSWKRD   = "Class of worker [detailed version]"
+  OCCSOC      = "Occupation, SOC classification"
+  INDNAICS    = "Industry, NAICS classification"
+  WKSWORK2    = "Weeks worked last year, intervalled"
+  UHRSWORK    = "Usual hours worked per week"
+  WRKLSTWK    = "Worked last week"
+  ABSENT      = "Absent from work last week"
+  LOOKING     = "Looking for work"
+  AVAILBLE    = "Available for work"
+  WRKRECAL    = "Informed of work recall"
+  WORKEDYR    = "Worked last year"
+  INCTOT      = "Total personal income"
+  FTOTINC     = "Total family income"
+  INCWAGE     = "Wage and salary income"
+  INCBUS00    = "Business and farm income, 2000"
+  INCSS       = "Social Security income"
+  INCWELFR    = "Welfare (public assistance) income"
+  INCINVST    = "Interest, dividend, and rental income"
+  INCRETIR    = "Retirement income"
+  INCSUPP     = "Supplementary Security Income"
+  INCOTHER    = "Other income"
+  INCEARN     = "Total personal earned income"
+  POVERTY     = "Poverty status"
+  OCCSCORE    = "Occupational income score"
+  SEI         = "Duncan Socioeconomic Index"
+  PRESGL      = "Occupational prestige score, Siegel"
+  PRENT       = "Occupational prestige score, Nakao and Treas"
+  ERSCOR50    = "Occupational earnings score, 1950 basis"
+  ERSCOR90    = "Occupational earnings score, 1990 basis"
+  EDSCOR50    = "Occupational education score, 1950 basis"
+  EDSCOR90    = "Occupational education score, 1990 basis"
+  NPBOSS50    = "Nam-Powers-Boyd occupational status score, 1950 basis"
+  NPBOSS90    = "Nam-Powers-Boyd occupational status score, 1990 basis"
+  MIGRATE1    = "Migration status, 1 year [general version]"
+  MIGRATE1D   = "Migration status, 1 year [detailed version]"
+  MIGPLAC1    = "State or country of residence 1 year ago"
+  MIGPUMA1    = "PUMA of residence 1 year ago"
+  MOVEDIN     = "When occupant moved into residence"
+  VETDISAB    = "VA service-connected disability rating"
+  DIFFREM     = "Cognitive difficulty"
+  DIFFPHYS    = "Ambulatory difficulty"
+  DIFFMOB     = "Independent living difficulty"
+  DIFFCARE    = "Self-care difficulty"
+  DIFFSENS    = "Vision or hearing difficulty"
+  DIFFEYE     = "Vision difficulty"
+  DIFFHEAR    = "Hearing difficulty"
+  VETSTAT     = "Veteran status [general version]"
+  VETSTATD    = "Veteran status [detailed version]"
+  VET01LTR    = "Veteran, served 2001 or later"
+  VET90X01    = "Veteran, served 1990-2001"
+  VET75X90    = "Veteran, served May 1975 to July 1990"
+  VETVIETN    = "Veteran, served during Vietnam era"
+  VET55X64    = "Veteran, served 1955 to 1964"
+  VETKOREA    = "Veteran, served during Korean conflict era"
+  VET47X50    = "Veteran, served 1947-1950"
+  VETWWII     = "Veteran, served during WWII era"
+  VETOTHER    = "Veteran of other period"
+  PWSTATE2    = "Place of work: state"
+  PWPUMA00    = "Place of work: PUMA, 2000 onward"
+  TRANWORK    = "Means of transportation to work"
+  CARPOOL     = "Carpooling"
+  RIDERS      = "Vehicle occupancy"
+  TRANTIME    = "Travel time to work"
+  DEPARTS     = "Time of departure for work"
+  ARRIVES     = "Time of arrival at work"
+  GCHOUSE     = "Own grandchildren living in household"
+  GCMONTHS    = "Months responsible for grandchildren"
+  GCRESPON    = "Responsible for grandchildren"
+  REPWTP1     = "Person replicate weight 1"
+  REPWTP2     = "Person replicate weight 2"
+  REPWTP3     = "Person replicate weight 3"
+  REPWTP4     = "Person replicate weight 4"
+  REPWTP5     = "Person replicate weight 5"
+  REPWTP6     = "Person replicate weight 6"
+  REPWTP7     = "Person replicate weight 7"
+  REPWTP8     = "Person replicate weight 8"
+  REPWTP9     = "Person replicate weight 9"
+  REPWTP10    = "Person replicate weight 10"
+  REPWTP11    = "Person replicate weight 11"
+  REPWTP12    = "Person replicate weight 12"
+  REPWTP13    = "Person replicate weight 13"
+  REPWTP14    = "Person replicate weight 14"
+  REPWTP15    = "Person replicate weight 15"
+  REPWTP16    = "Person replicate weight 16"
+  REPWTP17    = "Person replicate weight 17"
+  REPWTP18    = "Person replicate weight 18"
+  REPWTP19    = "Person replicate weight 19"
+  REPWTP20    = "Person replicate weight 20"
+  REPWTP21    = "Person replicate weight 21"
+  REPWTP22    = "Person replicate weight 22"
+  REPWTP23    = "Person replicate weight 23"
+  REPWTP24    = "Person replicate weight 24"
+  REPWTP25    = "Person replicate weight 25"
+  REPWTP26    = "Person replicate weight 26"
+  REPWTP27    = "Person replicate weight 27"
+  REPWTP28    = "Person replicate weight 28"
+  REPWTP29    = "Person replicate weight 29"
+  REPWTP30    = "Person replicate weight 30"
+  REPWTP31    = "Person replicate weight 31"
+  REPWTP32    = "Person replicate weight 32"
+  REPWTP33    = "Person replicate weight 33"
+  REPWTP34    = "Person replicate weight 34"
+  REPWTP35    = "Person replicate weight 35"
+  REPWTP36    = "Person replicate weight 36"
+  REPWTP37    = "Person replicate weight 37"
+  REPWTP38    = "Person replicate weight 38"
+  REPWTP39    = "Person replicate weight 39"
+  REPWTP40    = "Person replicate weight 40"
+  REPWTP41    = "Person replicate weight 41"
+  REPWTP42    = "Person replicate weight 42"
+  REPWTP43    = "Person replicate weight 43"
+  REPWTP44    = "Person replicate weight 44"
+  REPWTP45    = "Person replicate weight 45"
+  REPWTP46    = "Person replicate weight 46"
+  REPWTP47    = "Person replicate weight 47"
+  REPWTP48    = "Person replicate weight 48"
+  REPWTP49    = "Person replicate weight 49"
+  REPWTP50    = "Person replicate weight 50"
+  REPWTP51    = "Person replicate weight 51"
+  REPWTP52    = "Person replicate weight 52"
+  REPWTP53    = "Person replicate weight 53"
+  REPWTP54    = "Person replicate weight 54"
+  REPWTP55    = "Person replicate weight 55"
+  REPWTP56    = "Person replicate weight 56"
+  REPWTP57    = "Person replicate weight 57"
+  REPWTP58    = "Person replicate weight 58"
+  REPWTP59    = "Person replicate weight 59"
+  REPWTP60    = "Person replicate weight 60"
+  REPWTP61    = "Person replicate weight 61"
+  REPWTP62    = "Person replicate weight 62"
+  REPWTP63    = "Person replicate weight 63"
+  REPWTP64    = "Person replicate weight 64"
+  REPWTP65    = "Person replicate weight 65"
+  REPWTP66    = "Person replicate weight 66"
+  REPWTP67    = "Person replicate weight 67"
+  REPWTP68    = "Person replicate weight 68"
+  REPWTP69    = "Person replicate weight 69"
+  REPWTP70    = "Person replicate weight 70"
+  REPWTP71    = "Person replicate weight 71"
+  REPWTP72    = "Person replicate weight 72"
+  REPWTP73    = "Person replicate weight 73"
+  REPWTP74    = "Person replicate weight 74"
+  REPWTP75    = "Person replicate weight 75"
+  REPWTP76    = "Person replicate weight 76"
+  REPWTP77    = "Person replicate weight 77"
+  REPWTP78    = "Person replicate weight 78"
+  REPWTP79    = "Person replicate weight 79"
+  REPWTP80    = "Person replicate weight 80"
 ;
 
 
@@ -399,9 +985,9 @@ format
  statefip statefip.
  metro metro_f.
  /***LONG FORMAT NAME ***   metarea metarea_f.***/
- metarea metareaf.
+ /*metarea metareaf.
   /***LONG FORMAT NAME ***   metaread metaread_f.***/
- metaread metaread.
+ /*metaread metaread.*/
  city city_f.
   /***LONG FORMAT NAME ***  homeland homeland_f.***/
  homeland homeland.
@@ -527,9 +1113,9 @@ format
  tribe tribe_f.
  tribed tribed_f.
  /***LONG FORMAT NAME ***   racesing racesing_f.***/
- racesing racesing.
+ /*racesing racesing.
  /***LONG FORMAT NAME ***  racesingd racesingd. ***/
- racesingd racesind.
+ /*racesingd racesind.*/
  school school_f.
  educ educ_f.
  educd educd_f.
@@ -559,7 +1145,7 @@ format
  classwkrd clsswkrd.
  /***LONG FORMAT NAME ***   wkswork2 wkswork2_f.***/
  wkswork2 wkswrk2f.
- absent absent_f.
+ /*MW absent absent_f.*/
  /***LONG FORMAT NAME ***   looking looking_f***/
  looking lookingf.
  /***LONG FORMAT NAME ***   availble availble_f.***/
@@ -575,11 +1161,11 @@ format
  /***LONG FORMAT NAME ***   migplac1 migplac1_f.***/
  migplac1 migplc1f.
  /***LONG FORMAT NAME ***   migmet1 migmet1_f.***/
- migmet1 migmet1f.
+ /*migmet1 migmet1f.
  /***LONG FORMAT NAME ***   migtype1 migtype1_f.***/
- migtype1 migtyp1f.
+ /*migtype1 migtyp1f.
  /***LONG FORMAT NAME ***   migcity1 migcity1_f.***/
- migcity1 migcty1f.
+ /*migcity1 migcty1f.
  /***LONG FORMAT NAME ***   diffrem diffrem_f.***/
  diffrem diffremf.
  /***LONG FORMAT NAME ***   diffphys diffphys_f.***/
@@ -599,9 +1185,9 @@ format
  /***LONG FORMAT NAME ***   vet90x01 vet90x01_f.***/
  vet90x01 vt90x01f.
  /***LONG FORMAT NAME ***   vet80x90 vet80x90_f.***/
- vet80x90 vt80x90f.
+ /*vet80x90 vt80x90f.
  /***LONG FORMAT NAME ***   vet75x80 vet75x80_f.***/
- vet75x80 vt75x80f.
+ /*vet75x80 vt75x80f.
  /***LONG FORMAT NAME ***   vetvietn vetvietn_f.***/
  vetvietn vetvietn.
  /***LONG FORMAT NAME ***   vet55x64 vet55x64_f.***/
@@ -617,7 +1203,7 @@ format
  /***LONG FORMAT NAME ***   pwstate2 pwstate2_f.***/
  pwstate2 pw_st2f.
  /***LONG FORMAT NAME ***   pwmetro pwmetro_f.***/
- pwmetro pwmetrof.
+ /*pwmetro pwmetrof.
  pwcity pwcity_f.
  pwtype pwtype_f.
  /***LONG FORMAT NAME ***   tranwork tranwork_f.***/
@@ -740,10 +1326,10 @@ format
     datanum serial rooms nfams ncouples nmothers nfathers pernum 
     hhwt perwt slwt momloc poploc sploc famsize nchild nchlt5 
     eldch yngch numprec nsibs age occ occscore ind indnaics occsoc sei
-    puma pumasupr conspuma farmprod mortamt1 mortamt2 propinsr rent
+    puma /*pumasupr conspuma*/ farmprod mortamt1 mortamt2 propinsr rent
     rentgrs condofee moblhome cost: ftotinc hhincome 
     valueh pernum slwt q: uhrswork inc: poverty
-    migmet1 migpums1 migpuma1 movedin pwpuma00 pwpumas
+    migmet1 /*migpums1*/ migpuma1 movedin pwpuma00 /*pwpumas*/
     trantime departs arrives yrsusa1 yrimmig
   ;  
   
