@@ -1,9 +1,9 @@
 /**************************************************************************
- Program:  Acs_<year>_fam_pmsa99.sas
+ Program:  Acs_2010_14_fam_pmsa99.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
- Author:   
- Created:  
+ Author:   M. Woluchem
+ Created:  07/21/16
  Version:  SAS 9.2
  Environment:  Windows with SAS/Connect
  
@@ -27,9 +27,9 @@
 
 %let revisions = %str(New file.);
 
-data Ipums.Acs_<year>_fam_pmsa99
+data Ipums.Acs_2010_14_fam_pmsa99
        (compress=binary 
-        label="ACS microdata, calculated family types (HH level), <year>, Washington, D.C. PMSA (1999)");
+        label="ACS microdata, calculated family types (HH level), 2010-14, Washington, D.C. PMSA (1999)");
 
   length related_pers has_spouse has_unmrd_prtnr 
          own_children_18 related_children_18 related_children_6 
@@ -44,7 +44,7 @@ data Ipums.Acs_<year>_fam_pmsa99
         is_family is_mrdwkids is_mrdnokid is_sfemwkids is_smalwkids 
         is_sngfem is_sngmal  ;
 
-  set Ipums.Acs_<year>_pmsa99 
+  set Ipums.Acs_2010_14_pmsa99 
         (keep=serial statefip gq pernum age sex famsize sploc poploc momloc 
               marst related empstatd hhwt);
   by serial;
@@ -174,14 +174,14 @@ run;
 
 ** File info **;
 
-%File_info( data=Ipums.Acs_<year>_fam_pmsa99, freqvars=gq )
+%File_info( data=Ipums.Acs_2010_14_fam_pmsa99, freqvars=gq )
 
 ** Register with metadata system **;
 
 %Dc_update_meta_file(
   ds_lib=Ipums,
-  ds_name=Acs_<year>_fam_pmsa99,
-  creator_process=Acs_<year>_fam_pmsa99.sas,
+  ds_name=Acs_2010_14_fam_pmsa99,
+  creator_process=Acs_2010_14_fam_pmsa99.sas,
   revisions=%str(&revisions),
   restrictions=None
 )

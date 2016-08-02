@@ -10,6 +10,8 @@
  Description:  Download IPUMS format catalog.
 
  Modifications:
+
+07/17/16 MW Updated for SAS1 Server
 **************************************************************************/
 
 %include "L:\SAS\Inc\StdLocal.sas";
