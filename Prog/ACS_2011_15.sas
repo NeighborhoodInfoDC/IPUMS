@@ -22,7 +22,7 @@
 ** Define libraries **;
 %DCData_lib( Ipums )
 
-options obs=100;  ** Uncomment for testing **;
+*options obs=100;  ** Uncomment for testing **;
 
 ** Location of input data sets **;
 
@@ -32,19 +32,16 @@ libname indat "L:\Libraries\IPUMS\Raw\PAT";
 
 %let yr = 2011_15;
 
-%let yr_dash = %sysfunc( tranwrd( "&yr", '_', '-' ) );
+%let revisions = New file.;
+
+%let yr_dash = %sysfunc( tranwrd( &yr, _, - ) );
 
 %let FIPS_DC = '11';
 %let FIPS_MD = '24';
 %let FIPS_VA = '51';
 %let FIPS_WV = '54';
 
-data
-  ACS_&yr._DC /*(label="IPUMS ACS sample, &yr_dash., DC")*/
-  ACS_&yr._MD /*((label="IPUMS ACS sample, &yr_dash., MD")*/
-  ACS_&yr._VA /*((label="IPUMS ACS sample, &yr_dash., VA")*/
-  ACS_&yr._WV /*((label="IPUMS ACS sample, &yr_dash., WV")*/
-  ;
+data ACS_&yr._DC ACS_&yr._MD ACS_&yr._VA ACS_&yr._WV;
 
   merge indat.usa_00027 indat.usa_00028;
   by serial pernum;
@@ -236,10 +233,11 @@ format
   GCHOUSE     GCHOUSE_f.
   GCMONTHS    GCMONTHS_f.
   GCRESPON    GCRESPON_f.
-
- /*** UI-created format for race Yes/No vars. ***/
- racamind racasian racblk racother racpacis racwht uracyn.
-;
+  ;
+  
+  
+  *** UI-created format for race Yes/No vars. ***;
+  format racamind racasian racblk racother racpacis racwht uracyn.;
 
   ** Create unique PUMA ID **;
 
@@ -317,21 +315,72 @@ format
 
 run;
 
-%File_info( data=ACS_&yr._DC, printobs=5, freqvars=statefip acre: gq vacancy hud_inc )
 
-/*
-title2 'Observations with missing HUD_INC';
+** Finalize data sets **;
 
-proc print data=ACS_&yr._DC;
-  where hud_inc = .;
-  id serial;
-  var year hud_inc hhincome numprec gq;
-run;
+%Finalize_data_set( 
+  /** Finalize data set parameters **/
+  data=ACS_&yr._DC,
+  out=ACS_&yr._DC,
+  outlib=Ipums,
+  label="IPUMS ACS sample, &yr_dash., DC",
+  sortby=serial pernum,
+  /** Metadata parameters **/
+  restrictions=None,
+  revisions=%str(&revisions),
+  /** File info parameters **/
+  printobs=0,
+  freqvars=statefip gq vacancy hud_inc
+)
 
-title2; 
-*/
+%Finalize_data_set( 
+  /** Finalize data set parameters **/
+  data=ACS_&yr._MD,
+  out=ACS_&yr._MD,
+  outlib=Ipums,
+  label="IPUMS ACS sample, &yr_dash., MD",
+  sortby=serial pernum,
+  /** Metadata parameters **/
+  restrictions=None,
+  revisions=%str(&revisions),
+  /** File info parameters **/
+  printobs=0,
+  freqvars=statefip gq vacancy hud_inc
+)
 
-title2 'Unrecoded special values check';
+%Finalize_data_set( 
+  /** Finalize data set parameters **/
+  data=ACS_&yr._VA,
+  out=ACS_&yr._VA,
+  outlib=Ipums,
+  label="IPUMS ACS sample, &yr_dash., VA",
+  sortby=serial pernum,
+  /** Metadata parameters **/
+  restrictions=None,
+  revisions=%str(&revisions),
+  /** File info parameters **/
+  printobs=0,
+  freqvars=statefip gq vacancy hud_inc
+)
+
+%Finalize_data_set( 
+  /** Finalize data set parameters **/
+  data=ACS_&yr._WV,
+  out=ACS_&yr._WV,
+  outlib=Ipums,
+  label="IPUMS ACS sample, &yr_dash., WV",
+  sortby=serial pernum,
+  /** Metadata parameters **/
+  restrictions=None,
+  revisions=%str(&revisions),
+  /** File info parameters **/
+  printobs=0,
+  freqvars=statefip gq vacancy hud_inc
+)
+
+
+title2 '** Unrecoded special values check **';
+title3 '** Check maximum value of each variable. Should not be 999...9. **';
 
 proc means data=ACS_&yr._DC n min max;
 var mortamt1 mortamt2 taxincl insincl propinsr proptx99 rent
