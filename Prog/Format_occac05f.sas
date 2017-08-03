@@ -4,23 +4,24 @@
  Project:  NeighborhoodInfo DC
  Author:   P. Tatian
  Created:  08/24/07
- Version:  SAS 9.1
- Environment:  Windows
+ Version:  SAS 9.2
+ Environment:  Local Windows session (desktop)
  
  Description:  ACS Occupation Codes (OCC) for 2005.
 
  Modifications:
+  11/06/14 PAT Updated for SAS1 server.
 **************************************************************************/
 
-%include "K:\Metro\PTatian\DCData\SAS\Inc\Stdhead.sas";
+%include "L:\SAS\Inc\StdLocal.sas";
 
 ** Define libraries **;
-%DCData_lib( IPUMS )
+%DCData_lib( IPUMS, local=n )
 
 proc format library=Ipums;
 
   value occac05f
-    0 = "Not applicable"
+    0, .n = "Not applicable"
     1 = "Chief executives and legislators"
     2 = "General and Operations Managers"
     4 = "Advertising and Promotions Managers"
@@ -497,7 +498,7 @@ run;
 
 proc catalog catalog=Ipums.formats;
   modify occac05f (desc="Occupation codes for ACS 2005") / entrytype=format;
-
+  contents;
 quit;
 
 run;
