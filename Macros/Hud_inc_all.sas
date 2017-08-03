@@ -72,6 +72,10 @@
       %hud_inc_2014();
     end;
 
+    when ( 15, 2015 ) do;
+      %hud_inc_2015();
+    end;
+
     otherwise do;
       %err_put( macro=Hud_inc_all, msg=_n_= year= "not supported." );
     end;
@@ -89,7 +93,7 @@
 
 /***** UNCOMMENT TO TEST MACRO ***************************************
 
-%include "K:\Metro\PTatian\DCData\SAS\Inc\Stdhead.sas";
+%include "L:\SAS\Inc\StdLocal.sas";
 
 ** Define libraries **;
 %DCData_lib( Ipums )
@@ -98,7 +102,7 @@ options mprint symbolgen mlogic;
 
 data _null_;
 
-  year = 2008;
+  year = 2015;
   numprec = 4;
   hhincome = 40000;
   

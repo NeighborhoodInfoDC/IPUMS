@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Acs_2010_14_fam_pmsa99.sas
+ Program:  Acs_2011_15_fam_pmsa99.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
  Author:   P Tatian
@@ -19,9 +19,9 @@
 ** Define libraries **;
 %DCData_lib( Ipums )
 
-%let revisions = %str(Updated code for counting related and unrelated persons.);
+%let revisions = %str(New file.);
 
-data Acs_2010_14_fam_pmsa99;
+data Acs_2011_15_fam_pmsa99;
 
   length related_pers has_spouse has_unmrd_prtnr 
          own_children_18 related_children_18 related_children_6 
@@ -36,7 +36,7 @@ data Acs_2010_14_fam_pmsa99;
         is_family is_mrdwkids is_mrdnokid is_sfemwkids is_smalwkids 
         is_sngfem is_sngmal  ;
 
-  set Ipums.Acs_2010_14_pmsa99 
+  set Ipums.Acs_2011_15_pmsa99 
         (keep=serial statefip gq pernum age sex famsize sploc poploc momloc 
               marst related empstatd hhwt);
   by serial;
@@ -165,10 +165,10 @@ run;
 
 %Finalize_data_set( 
   /** Finalize data set parameters **/
-  data=Acs_2010_14_fam_pmsa99,
-  out=Acs_2010_14_fam_pmsa99,
+  data=Acs_2011_15_fam_pmsa99,
+  out=Acs_2011_15_fam_pmsa99,
   outlib=IPUMS,
-  label="ACS microdata, calculated family types (HH level), 2010-14, Washington, D.C. PMSA (1999)",
+  label="ACS microdata, calculated family types (HH level), 2011-15, Washington, D.C. PMSA (1999)",
   sortby=serial,
   /** Metadata parameters **/
   restrictions=None,
