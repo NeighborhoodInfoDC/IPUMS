@@ -2,10 +2,10 @@
  Program:  Acs_2010_14_fam_pmsa99.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
- Author:   M. Woluchem
- Created:  07/21/16
+ Author:   P Tatian
+ Created:  08/02/2017
  Version:  SAS 9.2
- Environment:  Windows with SAS/Connect
+ Environment:  Windows
  
  Description: Create HH level family vars. for IPUMS data.
  Washington, D.C. PMSA (1999)
@@ -14,22 +14,14 @@
  07/21/16 MW Modified for SAS1 Server
 **************************************************************************/
 
-/*%include "K:\Metro\PTatian\DCData\SAS\Inc\Stdhead.sas";
-%include "K:\Metro\PTatian\DCData\SAS\Inc\AlphaSignon.sas" /nosource2;*/
-
 %include "L:\SAS\Inc\StdLocal.sas";
-
 
 ** Define libraries **;
 %DCData_lib( Ipums )
 
-*rsubmit;
+%let revisions = %str(Updated code for counting related and unrelated persons.);
 
-%let revisions = %str(New file.);
-
-data Ipums.Acs_2010_14_fam_pmsa99
-       (compress=binary 
-        label="ACS microdata, calculated family types (HH level), 2010-14, Washington, D.C. PMSA (1999)");
+data Acs_2010_14_fam_pmsa99;
 
   length related_pers has_spouse has_unmrd_prtnr 
          own_children_18 related_children_18 related_children_6 
@@ -51,7 +43,7 @@ data Ipums.Acs_2010_14_fam_pmsa99
   
   if first.serial then do;
   
-    related_pers = famsize;
+    related_pers = 0;
     hhh_sex = sex;
     hhh_age = age;
     own_children_18 = 0;
@@ -78,13 +70,14 @@ data Ipums.Acs_2010_14_fam_pmsa99
   if ( poploc = 1 or momloc = 1 ) and age < 18 and marst = 6 then 
     own_children_18 + 1;
 
-  if 201 <= related < 1100 then do;
-    if 301 <= related then do;                 ** Do not count spouse as related child **;
+  if ( 101 <= related < 1115 ) or ( 1270 <= related <= 1301 ) then do;
+    related_pers + 1;
+    if 301 <= related then do;                 ** Do not count household head or spouse as related child **;
       if age < 6 then related_children_6 + 1;
       if age < 18 then related_children_18 + 1;
     end;
   end;
-  else if 1100 <= related < 1270 then do;      ** Do not count group quarters pers as unrelated **;
+  else if 1115 <= related < 1270 then do;      ** Do not count group quarters pers as unrelated **;
     unrelated_pers + 1;
   end;
   
@@ -168,27 +161,22 @@ data Ipums.Acs_2010_14_fam_pmsa99
 
 run;
 
-** Purge older versions **;
-
-*x "purge [dcdata.Ipums.data]Acs_<year>_fam_pmsa99.*";
-
 ** File info **;
 
-%File_info( data=Ipums.Acs_2010_14_fam_pmsa99, freqvars=gq )
-
-** Register with metadata system **;
-
-%Dc_update_meta_file(
-  ds_lib=Ipums,
-  ds_name=Acs_2010_14_fam_pmsa99,
-  creator_process=Acs_2010_14_fam_pmsa99.sas,
+%Finalize_data_set( 
+  /** Finalize data set parameters **/
+  data=Acs_2010_14_fam_pmsa99,
+  out=Acs_2010_14_fam_pmsa99,
+  outlib=IPUMS,
+  label="ACS microdata, calculated family types (HH level), 2010-14, Washington, D.C. PMSA (1999)",
+  sortby=serial,
+  /** Metadata parameters **/
+  restrictions=None,
   revisions=%str(&revisions),
-  restrictions=None
+  /** File info parameters **/
+  printobs=10,
+  freqvars=gq
 )
 
 run;
-
-*endrsubmit;
-
-*signoff;
 

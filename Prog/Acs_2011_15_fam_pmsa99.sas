@@ -43,7 +43,7 @@ data Acs_2011_15_fam_pmsa99;
   
   if first.serial then do;
   
-    related_pers = famsize;
+    related_pers = 0;
     hhh_sex = sex;
     hhh_age = age;
     own_children_18 = 0;
@@ -70,13 +70,14 @@ data Acs_2011_15_fam_pmsa99;
   if ( poploc = 1 or momloc = 1 ) and age < 18 and marst = 6 then 
     own_children_18 + 1;
 
-  if 201 <= related < 1100 then do;
-    if 301 <= related then do;                 ** Do not count spouse as related child **;
+  if ( 101 <= related < 1115 ) or ( 1270 <= related <= 1301 ) then do;
+    related_pers + 1;
+    if 301 <= related then do;                 ** Do not count household head or spouse as related child **;
       if age < 6 then related_children_6 + 1;
       if age < 18 then related_children_18 + 1;
     end;
   end;
-  else if 1100 <= related < 1270 then do;      ** Do not count group quarters pers as unrelated **;
+  else if 1115 <= related < 1270 then do;      ** Do not count group quarters pers as unrelated **;
     unrelated_pers + 1;
   end;
   
