@@ -32,14 +32,14 @@
 
 %let yr_dash = %sysfunc( tranwrd( &yr, _, - ) );
 
-data Ipums.Acs_&yr._pmsa99 
-  (label="ACS microdata, &yr_dash, Washington, D.C. PMSA (1999)") / view=Ipums.Acs_&yr._pmsa99;
+data Acs_&yr._pmsa99 ;
+  /*(label="ACS microdata, &yr_dash, Washington, D.C. PMSA (1999)") / view=Ipums.Acs_&yr._pmsa99*/
 
   set 
-    Ipums.Acs_&yr._dc
-    Ipums.Acs_&yr._md
-    Ipums.Acs_&yr._va
-    Ipums.Acs_&yr._wv;
+    ipums.Acs_&yr._dc
+    ipums.Acs_&yr._md
+    ipums.Acs_&yr._va
+    ipums.Acs_&yr._wv;
     
   by serial;
 
@@ -47,21 +47,19 @@ data Ipums.Acs_&yr._pmsa99
 
 run;
 
-** File info **;
+** Finalize **;
 
-%File_info( data=Ipums.Acs_&yr._pmsa99, printobs=5, freqvars=statefip acre: )
-
-run;
-
-** Register with metadata system **;
-
-%Dc_update_meta_file(
-  ds_lib=Ipums,
-  ds_name=Acs_&yr._pmsa99,
-  creator_process=Acs_&yr._pmsa99.sas,
+%Finalize_data_set( 
+  /** Finalize data set parameters **/
+  data=Acs_&yr._pmsa99,
+  out=Acs_&yr._pmsa99,
+  outlib=Ipums,
+  label="ACS microdata, &yr_dash, Washington, D.C. PMSA (1999)",
+  sortby=serial pernum,
+  /** Metadata parameters **/
   restrictions=None,
-  revisions=%str(&revisions)
-)
-
-run;
+  revisions=%str(&revisions),
+  /** File info parameters **/
+  printobs=0
+);
 
