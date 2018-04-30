@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Acs_2016_fam_pmsa99.sas
+ Program:  Acs_2012_16_fam_pmsa99.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
  Author:   
@@ -25,7 +25,7 @@
 
 ** File year **;
 
-%let yr = 2016;
+%let yr = 2012_16;
 
 %let revisions = %str(New file.);  ** Default is New file. Change if updating an existing data set. **;
 

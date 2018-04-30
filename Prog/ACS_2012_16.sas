@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  ACS_2016.sas
+ Program:  ACS_2012_16.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
  Author:   Yipeng Su
@@ -31,7 +31,7 @@ libname indat "D:\DCData\Libraries\IPUMS\Raw\";
 
 ** File year **;
 
-%let yr = 2016;
+%let yr = 2012_16;
 
 %let revisions = New file.;  ** Default is New file. Change if updating an existing data set. **;
 
