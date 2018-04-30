@@ -25,7 +25,7 @@
 
 ** Location of input data sets **;
 
-libname indat "D:\DCData\Libraries\IPUMS\Raw\";
+libname indat "L:\Libraries\IPUMS\Raw\";
 
 %let input_data_sets = all_2016;
 
