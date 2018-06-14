@@ -21,12 +21,14 @@
 %let yr = 2012_16;
 %let yr_dash = %sysfunc( tranwrd( "&yr", '_', '-' ) );
 
+%let revisions = Update for 2012-16 data.
+
 %let FIPS_DC = '11';
 %let FIPS_MD = '24';
 %let FIPS_VA = '51';
 %let FIPS_WV = '54';
 
-filename asciidat "&_dcdata_r_path\ipums\raw\pat\usa_00024.dat";
+filename asciidat "&_dcdata_r_path\ipums\raw\rp\usa_00103.dat";
 
 data 
   ACS_&yr._vacant_DC (label="IPUMS ACS sample, &yr_dash., vacant housing units, DC")
@@ -182,7 +184,7 @@ data
   
   ** Drop unneeded variables **;
   
-  drop appal appald lingisol phone fuelheat vehicles;
+  drop lingisol phone fuelheat vehicles;
   
 run;
 
@@ -195,7 +197,7 @@ run;
   data=ACS_&yr._vacant_&st.,
   out=ACS_&yr._vacant_&st.,
   outlib=ipums,
-  label="IPUMS ACS sample, &yr_dash., vacant housing units, &st.",
+  label="IPUMS ACS sample, 2012-16, vacant housing units, &st.",
   sortby=serial,
   /** Metadata parameters **/
   restrictions=None,
