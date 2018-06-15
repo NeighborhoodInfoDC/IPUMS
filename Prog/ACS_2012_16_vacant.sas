@@ -156,6 +156,9 @@ data
   ** Create unique PUMA ID **;
 
   %upuma() 
+
+  ** Keep only vacant units **;
+  if vacancy ^= 0 ;
   
   ** Recode n/a and missing values **;
   
