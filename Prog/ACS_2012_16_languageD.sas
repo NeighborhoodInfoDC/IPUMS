@@ -16,14 +16,18 @@
  Modifications:
 **************************************************************************/
 
-libname Ipums2 "L:\Libraries\IPUMS\Raw\usa_00009";
-libname raw_2016 "L:\Libraries\IPUMS\Raw";
+%include "L:\SAS\Inc\StdLocal.sas";
 
-proc sort data=Ipums2.usa_00009
+** Define libraries **;
+%DCData_lib( Ipums )
+
+libname Ipums2 "L:\Libraries\IPUMS\Raw\usa_00010";
+
+proc sort data=Ipums2.usa_00010
 out=laguageD;by serial pernum; run;
 
-proc sort data=Raw_2016.all_2016
+proc sort data=Ipums.acs_2012_16_dc
 out=all;by serial pernum; run;
 
-data Raw_2016.ACS_2016_language; merge laguageD all; by serial pernum; run;
+data ACS_2016_language; merge laguageD all; by serial pernum; run;
 
