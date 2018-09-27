@@ -34,11 +34,26 @@ proc sort data=Ipums.acs_2012_16_&state. out=all_&state.;
 	by serial pernum; 
 run;
 
-data ACS_2016_language_&state.; 
+data ACS_2012_16_language_&state.; 
 	merge all_&state. (in=a) laguageD; 
 	by serial pernum; 
 	if a;
+	format language language. languaged languagd.;
 run;
+
+%Finalize_data_set( 
+  data=ACS_2012_16_language_&state.,
+  out=acs_2012_16_&state.,
+  outlib=Ipums,
+  label="IPUMS ACS sample, 2012-16, DC",
+  sortby=serial pernum,
+  /** Metadata parameters **/
+  restrictions=None,
+  revisions=%str(Added language and languaged variables),
+  /** File info parameters **/
+  printobs=0,
+  freqvars=statefip gq vacancy hud_inc
+);
 
 %mend lang;
 %lang (DC);
