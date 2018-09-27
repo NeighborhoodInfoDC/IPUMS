@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Merge Detailed language data with IPUMS data 2012-2016
+ Program:  ACS_2012_16_languageD
  Library:  Ipums
  Project:  NeighborhoodInfo DC
  Author:   Yipeng Su
@@ -23,11 +23,25 @@
 
 libname Ipums2 "L:\Libraries\IPUMS\Raw\usa_00010";
 
-proc sort data=Ipums2.usa_00010
-out=laguageD;by serial pernum; run;
+proc sort data=Ipums2.usa_00010 out=laguageD (keep = serial pernum language languaged);
+	by serial pernum; 
+run;
 
-proc sort data=Ipums.acs_2012_16_dc
-out=all;by serial pernum; run;
 
-data ACS_2016_language; merge laguageD all; by serial pernum; run;
+%macro lang (state);
 
+proc sort data=Ipums.acs_2012_16_&state. out=all_&state.; 
+	by serial pernum; 
+run;
+
+data ACS_2016_language_&state.; 
+	merge all_&state. (in=a) laguageD; 
+	by serial pernum; 
+	if a;
+run;
+
+%mend lang;
+%lang (DC);
+%lang (MD);
+%lang (VA);
+%lang (WV);
