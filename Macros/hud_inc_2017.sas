@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  Hud_inc_<year>.sas
+ Program:  Hud_inc_2017.sas
  Library:  IPUMS
  Project:  NeighborhoodInfo DC
  Author:   Yipeng Su
