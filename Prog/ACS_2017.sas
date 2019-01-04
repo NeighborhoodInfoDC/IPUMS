@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  ACS_2012.sas
+ Program:  ACS_2017.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
  Author:   P Tatian
@@ -25,13 +25,13 @@
 
 ** Location of input data sets **;
 
-libname indat "L:\Libraries\IPUMS\Raw\1 year\usa_00020_2012.sas7bdat";
+libname indat "L:\Libraries\IPUMS\Raw\1 year\usa_00025_2017.sas7bdat";
 
-%let input_data_sets = usa_00020;
+%let input_data_sets = usa_00025;
 
 ** File year **;
 
-%let yr = 2012;
+%let yr = 2017;
 
 %let revisions = New file.;  ** Default is New file. Change if updating an existing data set. **;
 
@@ -44,197 +44,10 @@ libname indat "L:\Libraries\IPUMS\Raw\1 year\usa_00020_2012.sas7bdat";
 
 data ACS_&yr._DC ACS_&yr._MD ACS_&yr._VA ACS_&yr._WV;
 
-set indat.usa_00020;
+set indat.usa_00025;
 
 
       /**** COPY FORMAT STATEMENTS FROM DOWNLOADED SAS PROGRAM HERE ****/
-  format
-
-  YEAR        YEAR_f.
-  NUMPREC     NUMPREC_f.
-  SUBSAMP     SUBSAMP_f.
-  HHTYPE      HHTYPE_f.
-  REGION      REGION_f.
-  STATEICP    STATEICP_f.
-  STATEFIP    STATEFIP_f.
-  METRO       METRO_f.
-  MET2013     MET2013_f.
-  MET2013ERR  MET2013ERR_f.
-  CITY        CITY_f.
-  CITYERR     CITYERR_f.
-  HOMELAND    HOMELAND_f.
-  CNTRY       CNTRY_f.
-  GQ          GQ_f.
-  GQTYPE      GQTYPE_f.
-  GQTYPED     GQTYPED_f.
-  FARM        FARM_f.
-  OWNERSHP    OWNERSHP_f.
-  OWNERSHPD   OWNERSHPD_f.
-  MORTGAGE    MORTGAGE_f.
-  MORTGAG2    MORTGAG2_f.
-  COMMUSE     COMMUSE_f.
-  ACREHOUS    ACREHOUS_f.
-  TAXINCL     TAXINCL_f.
-  INSINCL     INSINCL_f.
-  PROPTX99    PROPTX99_f.
-  RENTMEAL    RENTMEAL_f.
-  FOODSTMP    FOODSTMP_f.
-  LINGISOL    LINGISOL_f.
-  VACANCY     VACANCY_f.
-  KITCHEN     KITCHEN_f.
-  FRIDGE      FRIDGE_f.
-  SINK        SINK_f.
-  STOVE       STOVE_f.
-  ROOMS       ROOMS_f.
-  PLUMBING    PLUMBING_f.
-  HOTWATER    HOTWATER_f.
-  SHOWER      SHOWER_f.
-  TOILET      TOILET_f.
-  BUILTYR2    BUILTYR2_f.
-  UNITSSTR    UNITSSTR_f.
-  BEDROOMS    BEDROOMS_f.
-  PHONE       PHONE_f.
-  FUELHEAT    FUELHEAT_f.
-  VEHICLES    VEHICLES_f.
-  NFAMS       NFAMS_f.
-  NSUBFAM     NSUBFAM_f.
-  NCOUPLES    NCOUPLES_f.
-  NMOTHERS    NMOTHERS_f.
-  NFATHERS    NFATHERS_f.
-  MULTGEN     MULTGEN_f.
-  MULTGEND    MULTGEND_f.
-  CBNSUBFAM   CBNSUBFAM_f.
-  RESPMODE    RESPMODE_f.
-  FAMUNIT     FAMUNIT_f.
-  FAMSIZE     FAMSIZE_f.
-  SUBFAM      SUBFAM_f.
-  SFTYPE      SFTYPE_f.
-  SFRELATE    SFRELATE_f.
-  CBSUBFAM    CBSUBFAM_f.
-  CBSFTYPE    CBSFTYPE_f.
-  CBSFRELATE  CBSFRELATE_f.
-  MOMRULE     MOMRULE_f.
-  POPRULE     POPRULE_f.
-  SPRULE      SPRULE_f.
-  MOM2RULE    MOM2RULE_f.
-  POP2RULE    POP2RULE_f.
-  NCHILD      NCHILD_f.
-  NCHLT5      NCHLT5_f.
-  NSIBS       NSIBS_f.
-  ELDCH       ELDCH_f.
-  YNGCH       YNGCH_f.
-  RELATE      RELATE_f.
-  RELATED     RELATED_f.
-  SEX         SEX_f.
-  AGE         AGE_f.
-  BIRTHQTR    BIRTHQTR_f.
-  MARST       MARST_f.
-  MARRNO      MARRNO_f.
-  MARRINYR    MARRINYR_f.
-  DIVINYR     DIVINYR_f.
-  WIDINYR     WIDINYR_f.
-  FERTYR      FERTYR_f.
-  RACE        RACE_f.
-  RACED       RACED_f.
-  HISPAN      HISPAN_f.
-  HISPAND     HISPAND_f.
-  BPL         BPL_f.
-  BPLD        BPLD_f.
-  ANCESTR1    ANCESTR1_f.
-  ANCESTR1D   ANCESTR1D_f.
-  ANCESTR2    ANCESTR2_f.
-  ANCESTR2D   ANCESTR2D_f.
-  CITIZEN     CITIZEN_f.
-  YRNATUR     YRNATUR_f.
-  YRSUSA2     YRSUSA2_f.
-  LANGUAGE    LANGUAGE_f.
-  LANGUAGED   LANGUAGED_f.
-  SPEAKENG    SPEAKENG_f.
-  TRIBE       TRIBE_f.
-  TRIBED      TRIBED_f.
-  RACESING    RACESING_f.
-  RACESINGD   RACESINGD_f.
-  RACAMIND    RACAMIND_f.
-  RACASIAN    RACASIAN_f.
-  RACBLK      RACBLK_f.
-  RACPACIS    RACPACIS_f.
-  RACWHT      RACWHT_f.
-  RACOTHER    RACOTHER_f.
-  RACNUM      RACNUM_f.
-  HCOVANY     HCOVANY_f.
-  HCOVPRIV    HCOVPRIV_f.
-  HINSEMP     HINSEMP_f.
-  HINSPUR     HINSPUR_f.
-  HINSTRI     HINSTRI_f.
-  HCOVPUB     HCOVPUB_f.
-  HINSCAID    HINSCAID_f.
-  HINSCARE    HINSCARE_f.
-  HINSVA      HINSVA_f.
-  HINSIHS     HINSIHS_f.
-  SCHOOL      SCHOOL_f.
-  HIUFPGBASE  HIUFPGBASE_f.
-  HIUFPGINC   HIUFPGINC_f.
-  HIURULE     HIURULE_f.
-  HIUNPERS    HIUNPERS_f.
-  EDUC        EDUC_f.
-  EDUCD       EDUCD_f.
-  GRADEATT    GRADEATT_f.
-  GRADEATTD   GRADEATTD_f.
-  SCHLTYPE    SCHLTYPE_f.
-  DEGFIELD    DEGFIELD_f.
-  DEGFIELDD   DEGFIELDD_f.
-  DEGFIELD2   DEGFIELD2_f.
-  DEGFIELD2D  DEGFIELD2D_f.
-  EMPSTAT     EMPSTAT_f.
-  EMPSTATD    EMPSTATD_f.
-  LABFORCE    LABFORCE_f.
-  OCC1950     OCC1950_f.
-  OCC1990     OCC1990_f.
-  OCC2010     OCC2010_f.
-  IND1950     IND1950_f.
-  IND1990     IND1990_f.
-  CLASSWKR    CLASSWKR_f.
-  CLASSWKRD   CLASSWKRD_f.
-  WKSWORK2    WKSWORK2_f.
-  UHRSWORK    UHRSWORK_f.
-  WRKLSTWK    WRKLSTWK_f.
-  ABSENT      ABSENT_f.
-  LOOKING     LOOKING_f.
-  AVAILBLE    AVAILBLE_f.
-  WRKRECAL    WRKRECAL_f.
-  WORKEDYR    WORKEDYR_f.
-  MIGRATE1    MIGRATE1_f.
-  MIGRATE1D   MIGRATE1D_f.
-  MIGPLAC1    MIGPLAC1_f.
-  VETDISAB    VETDISAB_f.
-  DIFFREM     DIFFREM_f.
-  DIFFPHYS    DIFFPHYS_f.
-  DIFFMOB     DIFFMOB_f.
-  DIFFCARE    DIFFCARE_f.
-  DIFFSENS    DIFFSENS_f.
-  DIFFEYE     DIFFEYE_f.
-  DIFFHEAR    DIFFHEAR_f.
-  VETSTAT     VETSTAT_f.
-  VETSTATD    VETSTATD_f.
-  VET01LTR    VET01LTR_f.
-  VET90X01    VET90X01_f.
-  VET75X90    VET75X90_f.
-  VET80X90    VET80X90_f.
-  VET75X80    VET75X80_f.
-  VETVIETN    VETVIETN_f.
-  VET55X64    VET55X64_f.
-  VETKOREA    VETKOREA_f.
-  VET47X50    VET47X50_f.
-  VETWWII     VETWWII_f.
-  VETOTHER    VETOTHER_f.
-  PWSTATE2    PWSTATE2_f.
-  TRANWORK    TRANWORK_f.
-  CARPOOL     CARPOOL_f.
-  RIDERS      RIDERS_f.
-  GCHOUSE     GCHOUSE_f.
-  GCMONTHS    GCMONTHS_f.
-  GCRESPON    GCRESPON_f.
-  ;
   label
   YEAR       = "Census year"
   DATANUM    = "Data set number"
@@ -272,7 +85,6 @@ set indat.usa_00020;
   OWNERSHPD  = "Ownership of dwelling (tenure) [detailed version]"
   MORTGAGE   = "Mortgage status"
   MORTGAG2   = "Second mortgage status"
-  COMMUSE    = "Commercial use"
   FARMPROD   = "Sales of farm products"
   ACREHOUS   = "House acreage"
   MORTAMT1   = "First mortgage monthly payment"
@@ -304,7 +116,6 @@ set indat.usa_00020;
   PLUMBING   = "Plumbing facilities"
   HOTWATER   = "Hot and cold piped water"
   SHOWER     = "Bathtub or shower"
-  TOILET     = "Flush toilet"
   BUILTYR2   = "Age of structure, decade"
   UNITSSTR   = "Units in structure"
   BEDROOMS   = "Number of bedrooms"
@@ -461,8 +272,6 @@ set indat.usa_00020;
   SPEAKENG   = "Speaks English"
   TRIBE      = "Tribe [general version]"
   TRIBED     = "Tribe [detailed version]"
-  RACESING   = "Race: Single race identification [general version]"
-  RACESINGD  = "Race: Single race identification [detailed version]"
   RACAMIND   = "Race: American Indian or Alaska Native"
   RACASIAN   = "Race: Asian"
   RACBLK     = "Race: black or African American"
@@ -481,11 +290,6 @@ set indat.usa_00020;
   HINSVA     = "Health insurance through VA"
   HINSIHS    = "Health insurance through Indian Health Services"
   SCHOOL     = "School attendance"
-  HIUFPGBASE = "Federal poverty guidelines (base)"
-  HIUFPGINC  = "Federal poverty guidelines (increment)"
-  HIURULE    = "HIU pointer rule"
-  HIUID      = "HIU identification"
-  HIUNPERS   = "HIU number of persons"
   EDUC       = "Educational attainment [general version]"
   EDUCD      = "Educational attainment [detailed version]"
   GRADEATT   = "Grade level attending [general version]"
@@ -558,8 +362,6 @@ set indat.usa_00020;
   VET01LTR   = "Veteran, served 2001 or later"
   VET90X01   = "Veteran, served 1990-2001"
   VET75X90   = "Veteran, served May 1975 to July 1990"
-  VET80X90   = "Veteran, served 1980 to 1990"
-  VET75X80   = "Veteran, served 1975 to 1980"
   VETVIETN   = "Veteran, served during Vietnam era"
   VET55X64   = "Veteran, served 1955 to 1964"
   VETKOREA   = "Veteran, served during Korean conflict era"
@@ -577,11 +379,6 @@ set indat.usa_00020;
   GCHOUSE    = "Own grandchildren living in household"
   GCMONTHS   = "Months responsible for grandchildren"
   GCRESPON   = "Responsible for grandchildren"
-  PROBAI     = "Probability of American Indian race response"
-  PROBAPI    = "Probability of Asian/Pacific Islander race response"
-  PROBBLK    = "Probability of black race response"
-  PROBOTH    = "Probability of 'other race' race response"
-  PROBWHT    = "Probability of white race response"
   REPWTP1    = "Person replicate weight 1"
   REPWTP2    = "Person replicate weight 2"
   REPWTP3    = "Person replicate weight 3"
@@ -662,6 +459,183 @@ set indat.usa_00020;
   REPWTP78   = "Person replicate weight 78"
   REPWTP79   = "Person replicate weight 79"
   REPWTP80   = "Person replicate weight 80"
+;
+
+format
+  YEAR        YEAR_f.
+  NUMPREC     NUMPREC_f.
+  SUBSAMP     SUBSAMP_f.
+  HHTYPE      HHTYPE_f.
+  REGION      REGION_f.
+  STATEICP    STATEICP_f.
+  STATEFIP    STATEFIP_f.
+  METRO       METRO_f.
+  MET2013     MET2013_f.
+  MET2013ERR  MET2013ERR_f.
+  CITY        CITY_f.
+  CITYERR     CITYERR_f.
+  HOMELAND    HOMELAND_f.
+  CNTRY       CNTRY_f.
+  GQ          GQ_f.
+  GQTYPE      GQTYPE_f.
+  GQTYPED     GQTYPED_f.
+  FARM        FARM_f.
+  OWNERSHP    OWNERSHP_f.
+  OWNERSHPD   OWNERSHPD_f.
+  MORTGAGE    MORTGAGE_f.
+  MORTGAG2    MORTGAG2_f.
+  ACREHOUS    ACREHOUS_f.
+  TAXINCL     TAXINCL_f.
+  INSINCL     INSINCL_f.
+  PROPTX99    PROPTX99_f.
+  RENTMEAL    RENTMEAL_f.
+  FOODSTMP    FOODSTMP_f.
+  LINGISOL    LINGISOL_f.
+  VACANCY     VACANCY_f.
+  KITCHEN     KITCHEN_f.
+  FRIDGE      FRIDGE_f.
+  SINK        SINK_f.
+  STOVE       STOVE_f.
+  ROOMS       ROOMS_f.
+  PLUMBING    PLUMBING_f.
+  HOTWATER    HOTWATER_f.
+  SHOWER      SHOWER_f.
+  BUILTYR2    BUILTYR2_f.
+  UNITSSTR    UNITSSTR_f.
+  BEDROOMS    BEDROOMS_f.
+  PHONE       PHONE_f.
+  FUELHEAT    FUELHEAT_f.
+  VEHICLES    VEHICLES_f.
+  NFAMS       NFAMS_f.
+  NSUBFAM     NSUBFAM_f.
+  NCOUPLES    NCOUPLES_f.
+  NMOTHERS    NMOTHERS_f.
+  NFATHERS    NFATHERS_f.
+  MULTGEN     MULTGEN_f.
+  MULTGEND    MULTGEND_f.
+  CBNSUBFAM   CBNSUBFAM_f.
+  RESPMODE    RESPMODE_f.
+  FAMUNIT     FAMUNIT_f.
+  FAMSIZE     FAMSIZE_f.
+  SUBFAM      SUBFAM_f.
+  SFTYPE      SFTYPE_f.
+  SFRELATE    SFRELATE_f.
+  CBSUBFAM    CBSUBFAM_f.
+  CBSFTYPE    CBSFTYPE_f.
+  CBSFRELATE  CBSFRELATE_f.
+  MOMRULE     MOMRULE_f.
+  POPRULE     POPRULE_f.
+  SPRULE      SPRULE_f.
+  MOM2RULE    MOM2RULE_f.
+  POP2RULE    POP2RULE_f.
+  NCHILD      NCHILD_f.
+  NCHLT5      NCHLT5_f.
+  NSIBS       NSIBS_f.
+  ELDCH       ELDCH_f.
+  YNGCH       YNGCH_f.
+  RELATE      RELATE_f.
+  RELATED     RELATED_f.
+  SEX         SEX_f.
+  AGE         AGE_f.
+  BIRTHQTR    BIRTHQTR_f.
+  MARST       MARST_f.
+  MARRNO      MARRNO_f.
+  MARRINYR    MARRINYR_f.
+  DIVINYR     DIVINYR_f.
+  WIDINYR     WIDINYR_f.
+  FERTYR      FERTYR_f.
+  RACE        RACE_f.
+  RACED       RACED_f.
+  HISPAN      HISPAN_f.
+  HISPAND     HISPAND_f.
+  BPL         BPL_f.
+  BPLD        BPLD_f.
+  ANCESTR1    ANCESTR1_f.
+  ANCESTR1D   ANCESTR1D_f.
+  ANCESTR2    ANCESTR2_f.
+  ANCESTR2D   ANCESTR2D_f.
+  CITIZEN     CITIZEN_f.
+  YRNATUR     YRNATUR_f.
+  YRSUSA2     YRSUSA2_f.
+  LANGUAGE    LANGUAGE_f.
+  LANGUAGED   LANGUAGED_f.
+  SPEAKENG    SPEAKENG_f.
+  TRIBE       TRIBE_f.
+  TRIBED      TRIBED_f.
+  RACAMIND    RACAMIND_f.
+  RACASIAN    RACASIAN_f.
+  RACBLK      RACBLK_f.
+  RACPACIS    RACPACIS_f.
+  RACWHT      RACWHT_f.
+  RACOTHER    RACOTHER_f.
+  RACNUM      RACNUM_f.
+  HCOVANY     HCOVANY_f.
+  HCOVPRIV    HCOVPRIV_f.
+  HINSEMP     HINSEMP_f.
+  HINSPUR     HINSPUR_f.
+  HINSTRI     HINSTRI_f.
+  HCOVPUB     HCOVPUB_f.
+  HINSCAID    HINSCAID_f.
+  HINSCARE    HINSCARE_f.
+  HINSVA      HINSVA_f.
+  HINSIHS     HINSIHS_f.
+  SCHOOL      SCHOOL_f.
+  EDUC        EDUC_f.
+  EDUCD       EDUCD_f.
+  GRADEATT    GRADEATT_f.
+  GRADEATTD   GRADEATTD_f.
+  SCHLTYPE    SCHLTYPE_f.
+  DEGFIELD    DEGFIELD_f.
+  DEGFIELDD   DEGFIELDD_f.
+  DEGFIELD2   DEGFIELD2_f.
+  DEGFIELD2D  DEGFIELD2D_f.
+  EMPSTAT     EMPSTAT_f.
+  EMPSTATD    EMPSTATD_f.
+  LABFORCE    LABFORCE_f.
+  OCC1950     OCC1950_f.
+  OCC1990     OCC1990_f.
+  OCC2010     OCC2010_f.
+  IND1950     IND1950_f.
+  IND1990     IND1990_f.
+  CLASSWKR    CLASSWKR_f.
+  CLASSWKRD   CLASSWKRD_f.
+  WKSWORK2    WKSWORK2_f.
+  UHRSWORK    UHRSWORK_f.
+  WRKLSTWK    WRKLSTWK_f.
+  ABSENT      ABSENT_f.
+  LOOKING     LOOKING_f.
+  AVAILBLE    AVAILBLE_f.
+  WRKRECAL    WRKRECAL_f.
+  WORKEDYR    WORKEDYR_f.
+  MIGRATE1    MIGRATE1_f.
+  MIGRATE1D   MIGRATE1D_f.
+  MIGPLAC1    MIGPLAC1_f.
+  VETDISAB    VETDISAB_f.
+  DIFFREM     DIFFREM_f.
+  DIFFPHYS    DIFFPHYS_f.
+  DIFFMOB     DIFFMOB_f.
+  DIFFCARE    DIFFCARE_f.
+  DIFFSENS    DIFFSENS_f.
+  DIFFEYE     DIFFEYE_f.
+  DIFFHEAR    DIFFHEAR_f.
+  VETSTAT     VETSTAT_f.
+  VETSTATD    VETSTATD_f.
+  VET01LTR    VET01LTR_f.
+  VET90X01    VET90X01_f.
+  VET75X90    VET75X90_f.
+  VETVIETN    VETVIETN_f.
+  VET55X64    VET55X64_f.
+  VETKOREA    VETKOREA_f.
+  VET47X50    VET47X50_f.
+  VETWWII     VETWWII_f.
+  VETOTHER    VETOTHER_f.
+  PWSTATE2    PWSTATE2_f.
+  TRANWORK    TRANWORK_f.
+  CARPOOL     CARPOOL_f.
+  RIDERS      RIDERS_f.
+  GCHOUSE     GCHOUSE_f.
+  GCMONTHS    GCMONTHS_f.
+  GCRESPON    GCRESPON_f.
 ;
 
   *** UI-created format for race Yes/No vars. ***;
