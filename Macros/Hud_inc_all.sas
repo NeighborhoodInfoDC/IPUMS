@@ -80,6 +80,11 @@
       %hud_inc_2016();
     end;
 
+
+	when ( 17, 2017 ) do;
+      %hud_inc_2017();
+    end;
+
     otherwise do;
       %err_put( macro=Hud_inc_all, msg=_n_= year= "not supported." );
     end;
