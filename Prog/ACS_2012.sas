@@ -7,7 +7,7 @@
  Version:  SAS 9.2
  Environment:  Windows
  
- Description:  Read IPUMS <year> ACS data and create data sets 
+ Description:  Read IPUMS 2012 ACS data and create data sets 
  for DC, MD, VA, and WV.
  
  Input files were downloaded from IPUMS as SAS data sets.
