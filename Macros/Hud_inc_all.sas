@@ -18,8 +18,6 @@
  5  =  >120% AMI (high)
  7  =  N/A (income not reported)
 
- NB: This program must be copied to the Alpha dir. [dcdata.ipums.prog].
-
  Modifications:
   02/09/11 PAT Added 2009 macro.
                Added label and format association.
@@ -28,66 +26,64 @@
 
 /** Macro Hud_inc_all - Start Definition **/
 
-%macro Hud_inc_all(  );
+%macro Hud_inc_all( hhinc=hhincome, hhsize=numprec );
 
   select ( year );
   
     when ( 0, 2000 ) do;
-      %hud_inc_1999();
+      %hud_inc_1999( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 5, 2005 ) do;
-      %hud_inc_2005();
+      %hud_inc_2005( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 6, 2006 ) do;
-      %hud_inc_2006();
+      %hud_inc_2006( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 7, 2007 ) do;
-      %hud_inc_2007();
+      %hud_inc_2007( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 8, 2008 ) do;
-      %hud_inc_2008();
+      %hud_inc_2008( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 9, 2009 ) do;
-      %hud_inc_2009();
+      %hud_inc_2009( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 10, 2010 ) do;
-      %hud_inc_2010();
+      %hud_inc_2010( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 11, 2011 ) do;
-      %hud_inc_2011();
+      %hud_inc_2011( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
-	when ( 12, 2012 ) do;
-      %hud_inc_2012();
+    when ( 12, 2012 ) do;
+      %hud_inc_2012( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
-	when ( 13, 2013 ) do;
-      %hud_inc_2012();
+    when ( 13, 2013 ) do;
+      %hud_inc_2012( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
-
-	when ( 14, 2014 ) do;
-      %hud_inc_2014();
+    when ( 14, 2014 ) do;
+      %hud_inc_2014( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 15, 2015 ) do;
-      %hud_inc_2015();
+      %hud_inc_2015( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 16, 2016 ) do;
-      %hud_inc_2016();
+      %hud_inc_2016( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
-
-	when ( 17, 2017 ) do;
-      %hud_inc_2017();
+    when ( 17, 2017 ) do;
+      %hud_inc_2017( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     otherwise do;
@@ -114,15 +110,26 @@
 
 options mprint symbolgen mlogic;
 
+%macro all_years();
+
+  year = 0;
+  %Hud_inc_all()
+  put (_all_) (/=);
+  
+  %do i = 2005 %to 2017;
+      year = &i;
+      %Hud_inc_all()
+      put (_all_) (/=);
+  %end;
+  
+%mend all_years;
+
 data _null_;
 
-  year = 2015;
   numprec = 4;
   hhincome = 40000;
   
-  %Hud_inc_all()
-  
-  put (_all_) (/=);
+  %all_years()  
   
 run;
 

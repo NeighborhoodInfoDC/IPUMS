@@ -23,85 +23,86 @@
 
 /** Macro Hud_inc_2010 - Start Definition **/
 
-%macro Hud_inc_2010(  );
+%macro Hud_inc_2010( hhinc=hhincome, hhsize=numprec );
 
   ** HUD income categories (2010) **;
 
-  if hhincome in ( 9999999, .n ) then hud_inc = .n;
+  if (&hhinc.) in ( 9999999, .n ) then hud_inc = .n;
   else do;
 
-	select ( numprec );
+	select ( &hhsize. );
       when ( 1 )
         do;
-          if hhincome <= 21750 then hud_inc = 1;
-          else if 21750 < hhincome <= 36250 then hud_inc = 2;
-          else if 36250 < hhincome <= 45100 then hud_inc = 3;
-          else if 45100 < hhincome <= 87000 then hud_inc = 4;
-          else if 87000 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 21750 then hud_inc = 1;
+          else if 21750 < (&hhinc.) <= 36250 then hud_inc = 2;
+          else if 36250 < (&hhinc.) <= 45100 then hud_inc = 3;
+          else if 45100 < (&hhinc.) <= 87000 then hud_inc = 4;
+          else if 87000 < (&hhinc.) then hud_inc = 5;
         end;
       when ( 2 )
         do;
-          if hhincome <= 24850 then hud_inc = 1;
-          else if 24850 < hhincome <= 41400 then hud_inc = 2;
-          else if 41400 < hhincome <= 51550 then hud_inc = 3;
-          else if 51550 < hhincome <= 99400 then hud_inc = 4;
-          else if 99400 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 24850 then hud_inc = 1;
+          else if 24850 < (&hhinc.) <= 41400 then hud_inc = 2;
+          else if 41400 < (&hhinc.) <= 51550 then hud_inc = 3;
+          else if 51550 < (&hhinc.) <= 99400 then hud_inc = 4;
+          else if 99400 < (&hhinc.) then hud_inc = 5;
         end;
       when ( 3 )
         do;
-          if hhincome <= 27950 then hud_inc = 1;
-          else if 27950 < hhincome <= 46600 then hud_inc = 2;
-          else if 46600 < hhincome <= 58000 then hud_inc = 3;
-          else if 58000 < hhincome <= 111800 then hud_inc = 4;
-          else if 111800 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 27950 then hud_inc = 1;
+          else if 27950 < (&hhinc.) <= 46600 then hud_inc = 2;
+          else if 46600 < (&hhinc.) <= 58000 then hud_inc = 3;
+          else if 58000 < (&hhinc.) <= 111800 then hud_inc = 4;
+          else if 111800 < (&hhinc.) then hud_inc = 5;
         end;
       when ( 4 )
         do;
-          if hhincome <= 31050 then hud_inc = 1;
-          else if 31050 < hhincome <= 51750 then hud_inc = 2;
-          else if 51750 < hhincome <= 64400 then hud_inc = 3;
-          else if 64400 < hhincome <= 124200 then hud_inc = 4;
-          else if 124200 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 31050 then hud_inc = 1;
+          else if 31050 < (&hhinc.) <= 51750 then hud_inc = 2;
+          else if 51750 < (&hhinc.) <= 64400 then hud_inc = 3;
+          else if 64400 < (&hhinc.) <= 124200 then hud_inc = 4;
+          else if 124200 < (&hhinc.) then hud_inc = 5;
         end;
       when ( 5 )
         do;
-          if hhincome <= 33550 then hud_inc = 1;
-          else if 33550 < hhincome <= 55900 then hud_inc = 2;
-          else if 55900 < hhincome <= 69600 then hud_inc = 3;
-          else if 69600 < hhincome <= 134200 then hud_inc = 4;
-          else if 134200 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 33550 then hud_inc = 1;
+          else if 33550 < (&hhinc.) <= 55900 then hud_inc = 2;
+          else if 55900 < (&hhinc.) <= 69600 then hud_inc = 3;
+          else if 69600 < (&hhinc.) <= 134200 then hud_inc = 4;
+          else if 134200 < (&hhinc.) then hud_inc = 5;
         end;
       when ( 6 )
         do;
-          if hhincome <= 36050 then hud_inc = 1;
-          else if 36050 < hhincome <= 60050 then hud_inc = 2;
-          else if 60050 < hhincome <= 74750 then hud_inc = 3;
-          else if 74750 < hhincome <= 144200 then hud_inc = 4;
-          else if 144200 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 36050 then hud_inc = 1;
+          else if 36050 < (&hhinc.) <= 60050 then hud_inc = 2;
+          else if 60050 < (&hhinc.) <= 74750 then hud_inc = 3;
+          else if 74750 < (&hhinc.) <= 144200 then hud_inc = 4;
+          else if 144200 < (&hhinc.) then hud_inc = 5;
         end;
       when ( 7 )
         do;
-          if hhincome <= 38550 then hud_inc = 1;
-          else if 38550 < hhincome <= 64200 then hud_inc = 2;
-          else if 64200 < hhincome <= 79900 then hud_inc = 3;
-          else if 79900 < hhincome <= 154200 then hud_inc = 4;
-          else if 154200 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 38550 then hud_inc = 1;
+          else if 38550 < (&hhinc.) <= 64200 then hud_inc = 2;
+          else if 64200 < (&hhinc.) <= 79900 then hud_inc = 3;
+          else if 79900 < (&hhinc.) <= 154200 then hud_inc = 4;
+          else if 154200 < (&hhinc.) then hud_inc = 5;
         end;
       otherwise
         do;
-          if hhincome <= 41000 then hud_inc = 1;
-          else if 41000 < hhincome <= 68350 then hud_inc = 2;
-          else if 68350 < hhincome <= 85050 then hud_inc = 3;
-          else if 85050 < hhincome <= 164000 then hud_inc = 4;
-          else if 164000 < hhincome then hud_inc = 5;
+          if (&hhinc.) <= 41000 then hud_inc = 1;
+          else if 41000 < (&hhinc.) <= 68350 then hud_inc = 2;
+          else if 68350 < (&hhinc.) <= 85050 then hud_inc = 3;
+          else if 85050 < (&hhinc.) <= 164000 then hud_inc = 4;
+          else if 164000 < (&hhinc.) then hud_inc = 5;
         end;
     end;
-
 
   end;
 
   label Hud_inc = "HUD income categories";
   
+  format Hud_inc hudinc.;
+
 %mend Hud_inc_2010;
 
 /** End Macro Definition **/
