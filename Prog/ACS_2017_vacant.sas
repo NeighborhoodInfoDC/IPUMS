@@ -31,10 +31,10 @@
 filename asciidat "&_dcdata_r_path\ipums\raw\rp\usa_00107.dat";
 
 data 
-  ACS_&yr._vacant_DC (label="IPUMS ACS sample, &yr_dash., vacant housing units, DC")
-  ACS_&yr._vacant_MD (label="IPUMS ACS sample, &yr_dash., vacant housing units, MD")
-  ACS_&yr._vacant_VA (label="IPUMS ACS sample, &yr_dash., vacant housing units, VA")
-  ACS_&yr._vacant_WV (label="IPUMS ACS sample, &yr_dash., vacant housing units, WV");
+  ACS_&yr._vacant_DC (label="IPUMS ACS sample, &yr., vacant housing units, DC")
+  ACS_&yr._vacant_MD (label="IPUMS ACS sample, &yr., vacant housing units, MD")
+  ACS_&yr._vacant_VA (label="IPUMS ACS sample, &yr., vacant housing units, VA")
+  ACS_&yr._vacant_WV (label="IPUMS ACS sample, &yr., vacant housing units, WV");
 
   /**** COPY INFILE, INPUT, AND LABEL STATEMENTS FROM DOWNLOADED SAS PROGRAM HERE ****/
 
@@ -200,7 +200,7 @@ run;
   data=ACS_&yr._vacant_&st.,
   out=ACS_&yr._vacant_&st.,
   outlib=ipums,
-  label="IPUMS ACS sample, &yr_dash., vacant housing units, &st.",
+  label="IPUMS ACS sample, &yr., vacant housing units, &st.",
   sortby=serial,
   /** Metadata parameters **/
   restrictions=None,
