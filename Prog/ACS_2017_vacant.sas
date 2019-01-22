@@ -21,7 +21,7 @@
 %let yr = 2017;
 %let yr_dash = %sysfunc( tranwrd( "&yr", '_', '-' ) );
 
-%let revisions = Update for &yr_dash. data. ;
+%let revisions = Update for &yr. data. ;
 
 %let FIPS_DC = '11';
 %let FIPS_MD = '24';
