@@ -693,11 +693,11 @@ format
   do i = 1 to dim( incg );
     if incg{i} = 999.9 then incg{i} = .n;
   end;
-/*  Need to update income category _YS 
+
   ** HUD income categories **;
   
-  %hud_inc_all()
- */ 
+  %hud_inc_all_NC()
+ 
 
   ** Output files by state **;
   
@@ -730,7 +730,7 @@ run;
   revisions=%str(&revisions),
   /** File info parameters **/
   printobs=0,
-  freqvars=statefip gq vacancy /*hud_inc*/
+  freqvars=statefip gq vacancy hud_inc
 )
 
 
