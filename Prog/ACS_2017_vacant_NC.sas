@@ -3,7 +3,7 @@
  Library:  IPUMS
  Project:  NeighborhoodInfo DC
  Author:   Yipeng SU
- Created:  07/3/2019
+ Created:  07/8/2019
  Version:  SAS 9.4
  Environment:  Local Windows session (desktop)
  
@@ -26,7 +26,7 @@
 %let FIPS_NC = '37';
 
 
-filename asciidat "&_dcdata_r_path\ipums\raw\rp\usa_00107.dat";
+filename asciidat "&_dcdata_r_path\ipums\raw\North Carolina\vacant\usa_00113.dat\usa_00113.dat";
 
 data 
   ACS_&yr._vacant_NC (label="IPUMS ACS sample, &yr., vacant housing units, NC");
@@ -167,7 +167,7 @@ data
   
   select ( statefip );
     when( &FIPS_NC ) output ACS_&yr._vacant_NC;
-\
+
     otherwise do;
       /** Nothing **/
     end;
