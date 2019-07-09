@@ -694,10 +694,11 @@ format
     if incg{i} = 999.9 then incg{i} = .n;
   end;
 
-  ** HUD income categories **;
+  /*
+  ** HUD income categories, will be calculated in the tabulation programs **;
   
   %hud_inc_all_NC()
-
+*/
 
   ** Output files by state **;
   
@@ -730,7 +731,7 @@ run;
   revisions=%str(&revisions),
   /** File info parameters **/
   printobs=0,
-  freqvars=statefip gq vacancy hud_inc
+  freqvars=statefip gq vacancy /*hud_inc*/
 )
 
 
