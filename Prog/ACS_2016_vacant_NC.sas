@@ -1,9 +1,9 @@
 /**************************************************************************
- Program:  ACS_2017_vacant_NC.sas
+ Program:  ACS_2016_vacant_NC.sas
  Library:  IPUMS
  Project:  NeighborhoodInfo DC
  Author:   Yipeng SU
- Created:  07/8/2019
+ Created:  07/9/2019
  Version:  SAS 9.4
  Environment:  Local Windows session (desktop)
  
@@ -18,7 +18,7 @@
 ** Define libraries **;
 %DCData_lib( IPUMS )
 
-%let yr = 2017;
+%let yr = 2016;
 %let yr_dash = %sysfunc( tranwrd( "&yr", '_', '-' ) );
 
 %let revisions = Update for &yr. data. ;
@@ -26,7 +26,7 @@
 %let FIPS_NC = 37;
 
 
-filename asciidat "&_dcdata_r_path\ipums\raw\North Carolina\vacant\usa_00119.dat\usa_00119.dat";
+filename asciidat "&_dcdata_r_path\ipums\raw\North Carolina\vacant\usa_00114.dat\usa_00114.dat";
 
 options mprint symbolgen;
 
