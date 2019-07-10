@@ -714,8 +714,6 @@ format
 
 run;
 
-proc contents data= ACS_2017_NC;
-run;
 
 ** Finalize data sets **;
 
