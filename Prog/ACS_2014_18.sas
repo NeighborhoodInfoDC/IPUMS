@@ -1,5 +1,5 @@
 /**************************************************************************
- Program:  ACS_<year>.sas
+ Program:  ACS_2014_18.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
  Author:   Eleanor Noble
@@ -27,11 +27,11 @@
 
 libname indat "L:\Libraries\IPUMS\Raw\";
 
-%let input_data_sets = Usa_00002;
+%let input_data_sets = indat.Usa_00002;
 
 ** File year **;
 
-%let yr = 2018;
+%let yr = 2014_18;
 
 %let revisions = New file.;  ** Default is New file. Change if updating an existing data set. **;
 
