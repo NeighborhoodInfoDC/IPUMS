@@ -97,14 +97,7 @@ data ACS_&yr._DC ACS_&yr._MD ACS_&yr._VA ACS_&yr._WV;
   do i = 1 to dim( incf );
     if incf{i} >= 9997 then incf{i} = .n;
   end;
-  
-  ** Earnings, education, and occupational status scores **;
-  
-  array incg{*} erscor50 erscor90 edscor50 edscor90 npboss50 npboss90;
-  
-  do i = 1 to dim( incg );
-    if incg{i} = 999.9 then incg{i} = .n;
-  end;
+ 
   
   ** HUD income categories **;
   
