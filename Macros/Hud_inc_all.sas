@@ -2,8 +2,8 @@
  Program:  Hud_inc_all.sas
  Library:  Ipums
  Project:  NeighborhoodInfo DC
- Author:   P. Tatian
- Created:  02/26/10
+ Author:   Eleanor Noble
+ Created:  04/07/2020
  Version:  SAS 9.1
  Environment:  Windows
  
@@ -83,6 +83,10 @@
     end;
 
     when ( 17, 2017 ) do;
+      %hud_inc_2017( hhinc=&hhinc, hhsize=&hhsize );
+    end;
+	
+	when ( 18, 2018 ) do;
       %hud_inc_2017( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
