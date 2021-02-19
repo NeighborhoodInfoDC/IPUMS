@@ -30,7 +30,7 @@
   if (&hhinc.) in ( 9999999, .n ) then hud_inc = .n;
   else do;
 
-        select ( numprec );
+        select ( &hhsize. );
       when ( 1 )
         do;
           if hhincome <= 25500 then hud_inc = 1;
@@ -99,13 +99,11 @@
 
     end;
 
-  end;
-
   label Hud_inc = "HUD income categories";
   
   format Hud_inc hudinc.;
 
-%mend Hud_inc_2018;
+%mend Hud_inc_2019;
 
 /** End Macro Definition **/
 
