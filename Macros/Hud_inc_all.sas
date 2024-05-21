@@ -67,7 +67,7 @@
     end;
 
     when ( 13, 2013 ) do;
-      %hud_inc_2012( hhinc=&hhinc, hhsize=&hhsize );
+      %hud_inc_2013( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
     when ( 14, 2014 ) do;
