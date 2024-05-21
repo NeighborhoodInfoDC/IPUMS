@@ -21,11 +21,11 @@
  Modifications:
 **************************************************************************/
 
-/** Macro Hud_inc_2012 - Start Definition **/
+/** Macro Hud_inc_2013 - Start Definition **/
 
 %macro Hud_inc_2013( hhinc=hhincome, hhsize=numprec );
 
-  ** HUD income categories (2012) **;
+  ** HUD income categories (2013) **;
 
   if (&hhinc.) in ( 9999999, .n ) then hud_inc = .n;
   else do;
