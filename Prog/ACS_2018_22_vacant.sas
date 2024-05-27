@@ -533,7 +533,7 @@ format
   ** Remove extraneous format associations **;
   
   format 
-    serial rooms hhwt puma pumasupr conspuma rent valueh county;
+    serial rooms hhwt puma rent valueh ;
   
   ** Drop unneeded variables **;
   
