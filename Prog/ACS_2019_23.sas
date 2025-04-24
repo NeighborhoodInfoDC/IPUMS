@@ -27,7 +27,7 @@
 
 libname indat "\\sas1\DCDATA\Libraries\IPUMS\Raw\ACS 2019-23\5 year";
 
-%let input_data_sets = usa_00001;
+%let input_data_sets = usa_00003;
 
 ** File year **;
 
@@ -47,473 +47,11 @@ libname indat "\\sas1\DCDATA\Libraries\IPUMS\Raw\ACS 2019-23\5 year";
 
 data ACS_&yr._DC ACS_&yr._MD ACS_&yr._VA ACS_&yr._WV;
 
-  set indat.usa_00001;
+  set indat.usa_00003;
 
 
 
     /**** COPY FORMAT STATEMENTS FROM DOWNLOADED SAS PROGRAM HERE ****/
-infile ASCIIDAT pad missover lrecl=1728;
-
-input
-  YEAR          1-4
-  MULTYEAR      5-8
-  SAMPLE        9-14
-  SERIAL        15-22
-  CBSERIAL      23-35
-  NUMPREC       36-37
-  SUBSAMP       38-39
-  HHWT          40-49 .2
-  EXPWTH        50-54
-  HHTYPE        55-55
-  CBHHTYPE      56-57
-  REPWT         58-58
-  CLUSTER       59-71
-  ADJUST        72-78 .6
-  CPI99         79-83 .3
-  REGION        84-85
-  STATEICP      86-87
-  STATEFIP      88-89
-  COUNTYICP     90-93
-  COUNTYFIP     94-96
-  PUMA          97-101
-  DENSITY       102-108 .1
-  METRO         109-109
-  PCTMETRO      110-114 .2
-  MET2013       115-119
-  MET2013ERR    120-120
-  MET2023       121-125
-  MET2023ERR    126-126
-  METPOP10      127-134
-  CITY          135-138
-  CITYERR       139-139
-  CITYPOP       140-146
-  HOMELAND      147-147
-  STRATA        148-159
-  CNTRY         160-162
-  GQ            163-163
-  GQTYPE        164-164
-  GQTYPED       165-167
-  FARM          168-168
-  OWNERSHP      169-169
-  OWNERSHPD     170-171
-  MORTGAGE      172-172
-  MORTGAG2      173-173
-  FARMPROD      174-174
-  ACREHOUS      175-175
-  MORTAMT1      176-180
-  MORTAMT2      181-184
-  TAXINCL       185-185
-  INSINCL       186-186
-  PROPINSR      187-190
-  PROPTX99      191-192
-  OWNCOST       193-197
-  RENT          198-201
-  RENTGRS       202-206
-  RENTMEAL      207-207
-  CONDOFEE      208-211
-  MOBLHOME      212-216
-  COSTELEC      217-220
-  COSTGAS       221-224
-  COSTWATR      225-228
-  COSTFUEL      229-232
-  HHINCOME      233-239
-  FOODSTMP      240-240
-  VALUEH        241-247
-  LINGISOL      248-248
-  VACANCY       249-249
-  VACDUR        250-250
-  VACOTH        251-252
-  KITCHEN       253-253
-  FRIDGE        254-254
-  SINK          255-255
-  STOVE         256-256
-  ROOMS         257-258
-  PLUMBING      259-260
-  HOTWATER      261-261
-  SHOWER        262-262
-  BUILTYR2      263-264
-  UNITSSTR      265-266
-  BEDROOMS      267-268
-  PHONE         269-269
-  CINETHH       270-270
-  CILAPTOP      271-271
-  CISMRTPHN     272-272
-  CITABLET      273-273
-  CIOTHCOMP     274-274
-  CIDATAPLN     275-275
-  CIHISPEED     276-277
-  CISAT         278-278
-  CIDIAL        279-279
-  CIOTHSVC      280-280
-  FUELHEAT      281-281
-  VEHICLES      282-282
-  COUPLETYPE    283-283
-  SSMC          284-284
-  NFAMS         285-286
-  NSUBFAM       287-287
-  NCOUPLES      288-288
-  NMOTHERS      289-289
-  NFATHERS      290-290
-  MULTGEN       291-291
-  MULTGEND      292-293
-  CBNSUBFAM     294-294
-  REPWT1        295-300
-  REPWT2        301-306
-  REPWT3        307-312
-  REPWT4        313-318
-  REPWT5        319-324
-  REPWT6        325-330
-  REPWT7        331-336
-  REPWT8        337-342
-  REPWT9        343-348
-  REPWT10       349-354
-  REPWT11       355-360
-  REPWT12       361-366
-  REPWT13       367-372
-  REPWT14       373-378
-  REPWT15       379-384
-  REPWT16       385-390
-  REPWT17       391-396
-  REPWT18       397-402
-  REPWT19       403-408
-  REPWT20       409-414
-  REPWT21       415-420
-  REPWT22       421-426
-  REPWT23       427-432
-  REPWT24       433-438
-  REPWT25       439-444
-  REPWT26       445-450
-  REPWT27       451-456
-  REPWT28       457-462
-  REPWT29       463-468
-  REPWT30       469-474
-  REPWT31       475-480
-  REPWT32       481-486
-  REPWT33       487-492
-  REPWT34       493-498
-  REPWT35       499-504
-  REPWT36       505-510
-  REPWT37       511-516
-  REPWT38       517-522
-  REPWT39       523-528
-  REPWT40       529-534
-  REPWT41       535-540
-  REPWT42       541-546
-  REPWT43       547-552
-  REPWT44       553-558
-  REPWT45       559-564
-  REPWT46       565-570
-  REPWT47       571-576
-  REPWT48       577-582
-  REPWT49       583-588
-  REPWT50       589-594
-  REPWT51       595-600
-  REPWT52       601-606
-  REPWT53       607-612
-  REPWT54       613-618
-  REPWT55       619-624
-  REPWT56       625-630
-  REPWT57       631-636
-  REPWT58       637-642
-  REPWT59       643-648
-  REPWT60       649-654
-  REPWT61       655-660
-  REPWT62       661-666
-  REPWT63       667-672
-  REPWT64       673-678
-  REPWT65       679-684
-  REPWT66       685-690
-  REPWT67       691-696
-  REPWT68       697-702
-  REPWT69       703-708
-  REPWT70       709-714
-  REPWT71       715-720
-  REPWT72       721-726
-  REPWT73       727-732
-  REPWT74       733-738
-  REPWT75       739-744
-  REPWT76       745-750
-  REPWT77       751-756
-  REPWT78       757-762
-  REPWT79       763-768
-  REPWT80       769-774
-  RESPMODE      775-775
-  PERNUM        776-779
-  CBPERNUM      780-781
-  PERWT         782-791 .2
-  EXPWTP        792-796
-  SLWT          797-806 .2
-  REPWTP        807-807
-  FAMUNIT       808-809
-  FAMSIZE       810-811
-  SUBFAM        812-812
-  SFTYPE        813-813
-  SFRELATE      814-814
-  CBSUBFAM      815-815
-  CBSFTYPE      816-816
-  CBSFRELATE    817-817
-  MOMLOC        818-819
-  MOMRULE       820-821
-  POPLOC        822-823
-  POPRULE       824-825
-  SPLOC         826-827
-  SPRULE        828-829
-  MOMLOC2       830-831
-  MOM2RULE      832-833
-  POPLOC2       834-835
-  POP2RULE      836-837
-  NCHILD        838-838
-  NCHLT5        839-839
-  NSIBS         840-840
-  ELDCH         841-842
-  YNGCH         843-844
-  RELATE        845-846
-  RELATED       847-850
-  SEX           851-851
-  AGE           852-854
-  BIRTHQTR      855-855
-  MARST         856-856
-  BIRTHYR       857-860
-  MARRNO        861-861
-  MARRINYR      862-862
-  YRMARR        863-866
-  DIVINYR       867-867
-  WIDINYR       868-868
-  FERTYR        869-869
-  RACE          870-870
-  RACED         871-873
-  HISPAN        874-874
-  HISPAND       875-877
-  BPL           878-880
-  BPLD          881-885
-  ANCESTR1      886-888
-  ANCESTR1D     889-892
-  ANCESTR2      893-895
-  ANCESTR2D     896-899
-  CITIZEN       900-900
-  YRNATUR       901-904
-  YRIMMIG       905-908
-  YRSUSA1       909-910
-  YRSUSA2       911-911
-  LANGUAGE      912-913
-  LANGUAGED     914-917
-  SPEAKENG      918-918
-  TRIBE         919-922
-  TRIBED        923-928
-  RACAMIND      929-929
-  RACASIAN      930-930
-  RACBLK        931-931
-  RACPACIS      932-932
-  RACWHT        933-933
-  RACOTHER      934-934
-  RACNUM        935-935
-  HCOVANY       936-936
-  HCOVPRIV      937-937
-  HINSEMP       938-938
-  HINSPUR       939-939
-  HINSTRI       940-940
-  HCOVPUB       941-941
-  HINSCAID      942-942
-  HINSCARE      943-943
-  HINSVA        944-944
-  HINSIHS       945-945
-  HCOVANY2      946-946
-  HCOVPRIV2     947-947
-  HINSEMP2      948-948
-  HINSPUR2      949-949
-  HINSTRI2      950-950
-  HCOVPUB2      951-951
-  HINSCAID2     952-952
-  HINSCARE2     953-953
-  HINSVA2       954-954
-  HINSIHS2      955-955
-  HCOVSUB2      956-956
-  SCHOOL        957-957
-  HIUFPGBASE    958-962
-  HIUFPGINC     963-966
-  HIURULE       967-968
-  HIUPOVUNIV    969-969
-  HIUHHSPOV     970-978 .4
-  HIUID         979-987
-  HIUNPERS      988-989
-  EDUC          990-991
-  EDUCD         992-994
-  GRADEATT      995-995
-  GRADEATTD     996-997
-  SCHLTYPE      998-998
-  DEGFIELD      999-1000
-  DEGFIELDD     1001-1004
-  DEGFIELD2     1005-1006
-  DEGFIELD2D    1007-1010
-  EMPSTAT       1011-1011
-  EMPSTATD      1012-1013
-  LABFORCE      1014-1014
-  CLASSWKR      1015-1015
-  CLASSWKRD     1016-1017
-  OCC           1018-1021
-  OCC1950       1022-1024
-  OCC1990       1025-1027
-  OCC2010       1028-1031
-  OCCSOC      $ 1032-1037
-  IND           1038-1041
-  IND1950       1042-1044
-  IND1990       1045-1047
-  INDNAICS    $ 1048-1055
-  WKSWORK1      1056-1057
-  WKSWORK2      1058-1058
-  UHRSWORK      1059-1060
-  WRKLSTWK      1061-1061
-  ABSENT        1062-1062
-  LOOKING       1063-1063
-  AVAILBLE      1064-1064
-  WRKRECAL      1065-1065
-  WORKEDYR      1066-1066
-  INCTOT        1067-1073
-  FTOTINC       1074-1080
-  INCWAGE       1081-1086
-  INCBUS00      1087-1092
-  INCSS         1093-1097
-  INCWELFR      1098-1102
-  INCINVST      1103-1108
-  INCRETIR      1109-1114
-  INCSUPP       1115-1119
-  INCOTHER      1120-1124
-  INCEARN       1125-1131
-  POVERTY       1132-1134
-  OCCSCORE      1135-1136
-  SEI           1137-1138
-  HWSEI         1139-1142 .2
-  PRESGL        1143-1145 .1
-  PRENT         1146-1148 .1
-  ERSCOR50      1149-1152 .1
-  ERSCOR90      1153-1156 .1
-  EDSCOR50      1157-1160 .1
-  EDSCOR90      1161-1164 .1
-  NPBOSS50      1165-1168 .1
-  NPBOSS90      1169-1172 .1
-  MIGRATE1      1173-1173
-  MIGRATE1D     1174-1175
-  MIGPLAC1      1176-1178
-  MIGCOUNTY1    1179-1181
-  MIGMET131     1182-1186
-  MIGMET13ERR   1187-1187
-  MIGPUMA1      1188-1192
-  MOVEDIN       1193-1193
-  VETDISAB      1194-1194
-  DIFFREM       1195-1195
-  DIFFPHYS      1196-1196
-  DIFFMOB       1197-1197
-  DIFFCARE      1198-1198
-  DIFFSENS      1199-1199
-  DIFFEYE       1200-1200
-  DIFFHEAR      1201-1201
-  VETSTAT       1202-1202
-  VETSTATD      1203-1204
-  VET01LTR      1205-1205
-  VET90X01      1206-1206
-  VET75X90      1207-1207
-  VETVIETN      1208-1208
-  VET55X64      1209-1209
-  VETKOREA      1210-1210
-  VETWWII       1211-1211
-  VETOTHER      1212-1212
-  VETOTHERD     1213-1214
-  PWSTATE2      1215-1216
-  PWCOUNTY      1217-1219
-  PWMET13       1220-1224
-  PWMET13ERR    1225-1225
-  PWPUMA00      1226-1230
-  TRANWORK      1231-1232
-  CARPOOL       1233-1233
-  RIDERS        1234-1234
-  TRANTIME      1235-1237
-  DEPARTS       1238-1241
-  ARRIVES       1242-1245
-  GCHOUSE       1246-1246
-  GCMONTHS      1247-1247
-  GCRESPON      1248-1248
-  REPWTP1       1249-1254
-  REPWTP2       1255-1260
-  REPWTP3       1261-1266
-  REPWTP4       1267-1272
-  REPWTP5       1273-1278
-  REPWTP6       1279-1284
-  REPWTP7       1285-1290
-  REPWTP8       1291-1296
-  REPWTP9       1297-1302
-  REPWTP10      1303-1308
-  REPWTP11      1309-1314
-  REPWTP12      1315-1320
-  REPWTP13      1321-1326
-  REPWTP14      1327-1332
-  REPWTP15      1333-1338
-  REPWTP16      1339-1344
-  REPWTP17      1345-1350
-  REPWTP18      1351-1356
-  REPWTP19      1357-1362
-  REPWTP20      1363-1368
-  REPWTP21      1369-1374
-  REPWTP22      1375-1380
-  REPWTP23      1381-1386
-  REPWTP24      1387-1392
-  REPWTP25      1393-1398
-  REPWTP26      1399-1404
-  REPWTP27      1405-1410
-  REPWTP28      1411-1416
-  REPWTP29      1417-1422
-  REPWTP30      1423-1428
-  REPWTP31      1429-1434
-  REPWTP32      1435-1440
-  REPWTP33      1441-1446
-  REPWTP34      1447-1452
-  REPWTP35      1453-1458
-  REPWTP36      1459-1464
-  REPWTP37      1465-1470
-  REPWTP38      1471-1476
-  REPWTP39      1477-1482
-  REPWTP40      1483-1488
-  REPWTP41      1489-1494
-  REPWTP42      1495-1500
-  REPWTP43      1501-1506
-  REPWTP44      1507-1512
-  REPWTP45      1513-1518
-  REPWTP46      1519-1524
-  REPWTP47      1525-1530
-  REPWTP48      1531-1536
-  REPWTP49      1537-1542
-  REPWTP50      1543-1548
-  REPWTP51      1549-1554
-  REPWTP52      1555-1560
-  REPWTP53      1561-1566
-  REPWTP54      1567-1572
-  REPWTP55      1573-1578
-  REPWTP56      1579-1584
-  REPWTP57      1585-1590
-  REPWTP58      1591-1596
-  REPWTP59      1597-1602
-  REPWTP60      1603-1608
-  REPWTP61      1609-1614
-  REPWTP62      1615-1620
-  REPWTP63      1621-1626
-  REPWTP64      1627-1632
-  REPWTP65      1633-1638
-  REPWTP66      1639-1644
-  REPWTP67      1645-1650
-  REPWTP68      1651-1656
-  REPWTP69      1657-1662
-  REPWTP70      1663-1668
-  REPWTP71      1669-1674
-  REPWTP72      1675-1680
-  REPWTP73      1681-1686
-  REPWTP74      1687-1692
-  REPWTP75      1693-1698
-  REPWTP76      1699-1704
-  REPWTP77      1705-1710
-  REPWTP78      1711-1716
-  REPWTP79      1717-1722
-  REPWTP80      1723-1728
-;
-
 label
   YEAR        = "Census year"
   MULTYEAR    = "Actual year of survey, multi-year ACS/PRCS"
@@ -541,12 +79,9 @@ label
   PCTMETRO    = "Percent of PUMA population living in metro area"
   MET2013     = "Metropolitan area (2013 delineations, identifiable areas only)"
   MET2013ERR  = "Coverage error in MET2013 variable"
-  MET2023     = "Metropolitan area (2023 delineations, identifiable areas only)"
-  MET2023ERR  = "Coverage error in MET2023 variable"
   METPOP10    = "Average 2010 population of 2013 metro/micro areas in PUMA"
   CITY        = "City (identifiable cities only)"
   CITYERR     = "Coverage error in CITY variable"
-  CITYPOP     = "City population (identifiable cities only)"
   HOMELAND    = "American Indian, Alaska Native, or Native Hawaiian homeland area"
   STRATA      = "Household strata for variance estimation"
   CNTRY       = "Country"
@@ -581,8 +116,6 @@ label
   VALUEH      = "House value"
   LINGISOL    = "Linguistic isolation"
   VACANCY     = "Vacancy status"
-  VACDUR      = "Duration of vacancy"
-  VACOTH      = "Other vacancy status"
   KITCHEN     = "Kitchen or cooking facilities"
   FRIDGE      = "Refrigerator"
   SINK        = "Sink with faucet"
@@ -713,8 +246,10 @@ label
   CBSFTYPE    = "Subfamily type (original Census Bureau classification)"
   CBSFRELATE  = "Subfamily relationship (original Census Bureau classification)"
   MOMLOC      = "Mother's location in the household"
+  STEPMOM     = "Probable step/adopted mother"
   MOMRULE     = "Rule for linking mother (new)"
   POPLOC      = "Father's location in the household"
+  STEPPOP     = "Probable step/adopted father"
   POPRULE     = "Rule for linking father (new)"
   SPLOC       = "Spouse's location in household"
   SPRULE      = "Rule for linking spouse or partner (new)"
@@ -787,15 +322,7 @@ label
   HINSCARE2   = "Health insurance through Medicare (original)"
   HINSVA2     = "Health insurance through VA (original)"
   HINSIHS2    = "Health insurance through Indian Health Services (original)"
-  HCOVSUB2    = "Subsidized marketplace insurance coverage (original)"
   SCHOOL      = "School attendance"
-  HIUFPGBASE  = "Federal poverty guidelines (base)"
-  HIUFPGINC   = "Federal poverty guidelines (increment)"
-  HIURULE     = "HIU pointer rule"
-  HIUPOVUNIV  = "Person in HIU poverty universe"
-  HIUHHSPOV   = "Ratio of HIU income to households poverty guidelines"
-  HIUID       = "HIU identification"
-  HIUNPERS    = "HIU number of persons"
   EDUC        = "Educational attainment [general version]"
   EDUCD       = "Educational attainment [detailed version]"
   GRADEATT    = "Grade level attending [general version]"
@@ -840,6 +367,7 @@ label
   INCOTHER    = "Other income"
   INCEARN     = "Total personal earned income"
   POVERTY     = "Poverty status"
+  CBPOVERTY   = "Poverty status (original Census Bureau calculation)"
   OCCSCORE    = "Occupational income score"
   SEI         = "Duncan Socioeconomic Index "
   HWSEI       = "Socioeconomic Index, Hauser and Warren"
@@ -851,13 +379,14 @@ label
   EDSCOR90    = "Occupational education score, 1990 basis"
   NPBOSS50    = "Nam-Powers-Boyd occupational status score, 1950 basis"
   NPBOSS90    = "Nam-Powers-Boyd occupational status score, 1990 basis"
-  MIGRATE1    = "Migration status, 1 year [general version]"
-  MIGRATE1D   = "Migration status, 1 year [detailed version]"
+  MIGRATE1    = "Migration status 1 year ago [general version]"
+  MIGRATE1D   = "Migration status 1 year ago [detailed version]"
   MIGPLAC1    = "State or country of residence 1 year ago"
-  MIGCOUNTY1  = "County of residence 1 year ago"
+  MIGCOUNTY1  = "County of residence 1 year ago (FIPS code)"
+  MIGPUMA1    = "Migration PUMA of residence 1 year ago"
   MIGMET131   = "Metropolitan area of residence 1 year ago (2013 delineations)"
   MIGMET13ERR = "Coverage error in MIGMET13 variables"
-  MIGPUMA1    = "PUMA of residence 1 year ago"
+  MIGPUMANOW  = "Migration PUMA of residence, now"
   MOVEDIN     = "When occupant moved into residence"
   VETDISAB    = "VA service-connected disability rating"
   DIFFREM     = "Cognitive difficulty"
@@ -889,9 +418,6 @@ label
   TRANTIME    = "Travel time to work"
   DEPARTS     = "Time of departure for work"
   ARRIVES     = "Time of arrival at work"
-  GCHOUSE     = "Own grandchildren living in household"
-  GCMONTHS    = "Months responsible for grandchildren"
-  GCRESPON    = "Responsible for grandchildren"
   REPWTP1     = "Person replicate weight 1"
   REPWTP2     = "Person replicate weight 2"
   REPWTP3     = "Person replicate weight 3"
@@ -988,8 +514,6 @@ format
   METRO        METRO_f.
   MET2013      MET2013_f.
   MET2013ERR   MET2013ERR_f.
-  MET2023      MET2023_f.
-  MET2023ERR   MET2023ERR_f.
   CITY         CITY_f.
   CITYERR      CITYERR_f.
   HOMELAND     HOMELAND_f.
@@ -1021,8 +545,6 @@ format
   VALUEH       VALUEH_f.
   LINGISOL     LINGISOL_f.
   VACANCY      VACANCY_f.
-  VACDUR       VACDUR_f.
-  VACOTH       VACOTH_f.
   KITCHEN      KITCHEN_f.
   FRIDGE       FRIDGE_f.
   SINK         SINK_f.
@@ -1068,7 +590,9 @@ format
   CBSUBFAM     CBSUBFAM_f.
   CBSFTYPE     CBSFTYPE_f.
   CBSFRELATE   CBSFRELATE_f.
+  STEPMOM      STEPMOM_f.
   MOMRULE      MOMRULE_f.
+  STEPPOP      STEPPOP_f.
   POPRULE      POPRULE_f.
   SPRULE       SPRULE_f.
   MOM2RULE     MOM2RULE_f.
@@ -1137,11 +661,7 @@ format
   HINSCARE2    HINSCARE2_f.
   HINSVA2      HINSVA2_f.
   HINSIHS2     HINSIHS2_f.
-  HCOVSUB2     HCOVSUB2_f.
   SCHOOL       SCHOOL_f.
-  HIURULE      HIURULE_f.
-  HIUPOVUNIV   HIUPOVUNIV_f.
-  HIUNPERS     HIUNPERS_f.
   EDUC         EDUC_f.
   EDUCD        EDUCD_f.
   GRADEATT     GRADEATT_f.
@@ -1223,9 +743,6 @@ format
   RIDERS       RIDERS_f.
   DEPARTS      DEPARTS_f.
   ARRIVES      ARRIVES_f.
-  GCHOUSE      GCHOUSE_f.
-  GCMONTHS     GCMONTHS_f.
-  GCRESPON     GCRESPON_f.
 ;
 
 format
@@ -1235,8 +752,6 @@ format
   STRATA       12.
   PERWT        11.2
   SLWT         11.2
-  HIUHHSPOV    10.4
-  HIUID        9.
 ;
   
   *** UI-created format for race Yes/No vars. ***;
