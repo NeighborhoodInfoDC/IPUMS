@@ -106,6 +106,10 @@
       %hud_inc_2022( hhinc=&hhinc, hhsize=&hhsize );
     end;
 
+	when ( 23, 2023 ) do;
+		%hud_inc_2023( hhinc=&hhinc, hhsize=&hhsize );
+    end;
+
     otherwise do;
       %err_put( macro=Hud_inc_all, msg=_n_= year= "not supported." );
     end;
