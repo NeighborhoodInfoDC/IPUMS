@@ -22,7 +22,7 @@
 /* %DCData_lib( IPUMS, local=n )*/
 
 %let yr = 2019_23;
-%let yr_dash = %sysfunc( tranwrd( "&yr", '_', '-' ) );
+%let yr_dash = %sysfunc(tranwrd(&yr, %str(_), -));
 
 %let revisions = Update for &yr. data. ;
 
@@ -32,7 +32,7 @@
 %let FIPS_WV = '54';
 
 
-filename asciidat "&_dcdata_r_path\ipums\Raw\RP\usa_00203.dat";
+filename asciidat "&_dcdata_r_path\ipums\Raw\RP\usa_00204.dat";
 
 
 data 
@@ -43,7 +43,7 @@ data
 
   /**** COPY INFILE, INPUT, AND LABEL STATEMENTS FROM DOWNLOADED SAS PROGRAM HERE ****/
 
-infile ASCIIDAT pad missover lrecl=758;
+infile ASCIIDAT pad missover lrecl=759;
 
 input
   YEAR         1-4
@@ -124,105 +124,105 @@ input
   CINETHH      254-254
   CILAPTOP     255-255
   CISMRTPHN    256-256
-  CIOTHCOMP    257-257
-  CIDATAPLN    258-258
-  CIHISPEED    259-260
-  CISAT        261-261
-  CIDIAL       262-262
-  CIOTHSVC     263-263
-  FUELHEAT     264-264
-  VEHICLES     265-265
-  COUPLETYPE   266-266
-  SSMC         267-267
-  NFAMS        268-269
-  NSUBFAM      270-270
-  NCOUPLES     271-271
-  NMOTHERS     272-272
-  NFATHERS     273-273
-  MULTGEN      274-274
-  MULTGEND     275-276
-  CBNSUBFAM    277-277
-  REPWT1       278-283
-  REPWT2       284-289
-  REPWT3       290-295
-  REPWT4       296-301
-  REPWT5       302-307
-  REPWT6       308-313
-  REPWT7       314-319
-  REPWT8       320-325
-  REPWT9       326-331
-  REPWT10      332-337
-  REPWT11      338-343
-  REPWT12      344-349
-  REPWT13      350-355
-  REPWT14      356-361
-  REPWT15      362-367
-  REPWT16      368-373
-  REPWT17      374-379
-  REPWT18      380-385
-  REPWT19      386-391
-  REPWT20      392-397
-  REPWT21      398-403
-  REPWT22      404-409
-  REPWT23      410-415
-  REPWT24      416-421
-  REPWT25      422-427
-  REPWT26      428-433
-  REPWT27      434-439
-  REPWT28      440-445
-  REPWT29      446-451
-  REPWT30      452-457
-  REPWT31      458-463
-  REPWT32      464-469
-  REPWT33      470-475
-  REPWT34      476-481
-  REPWT35      482-487
-  REPWT36      488-493
-  REPWT37      494-499
-  REPWT38      500-505
-  REPWT39      506-511
-  REPWT40      512-517
-  REPWT41      518-523
-  REPWT42      524-529
-  REPWT43      530-535
-  REPWT44      536-541
-  REPWT45      542-547
-  REPWT46      548-553
-  REPWT47      554-559
-  REPWT48      560-565
-  REPWT49      566-571
-  REPWT50      572-577
-  REPWT51      578-583
-  REPWT52      584-589
-  REPWT53      590-595
-  REPWT54      596-601
-  REPWT55      602-607
-  REPWT56      608-613
-  REPWT57      614-619
-  REPWT58      620-625
-  REPWT59      626-631
-  REPWT60      632-637
-  REPWT61      638-643
-  REPWT62      644-649
-  REPWT63      650-655
-  REPWT64      656-661
-  REPWT65      662-667
-  REPWT66      668-673
-  REPWT67      674-679
-  REPWT68      680-685
-  REPWT69      686-691
-  REPWT70      692-697
-  REPWT71      698-703
-  REPWT72      704-709
-  REPWT73      710-715
-  REPWT74      716-721
-  REPWT75      722-727
-  REPWT76      728-733
-  REPWT77      734-739
-  REPWT78      740-745
-  REPWT79      746-751
-  REPWT80      752-757
-  RESPMODE     758-758
+  CITABLET     257-257
+  CIDATAPLN    259-259
+  CIHISPEED    260-261
+  CISAT        262-262
+  CIDIAL       263-263
+  CIOTHSVC     264-264
+  FUELHEAT     265-265
+  VEHICLES     266-266
+  COUPLETYPE   267-267
+  SSMC         268-268
+  NFAMS        269-270
+  NSUBFAM      271-271
+  NCOUPLES     272-272
+  NMOTHERS     273-273
+  NFATHERS     274-274
+  MULTGEN      275-275
+  MULTGEND     276-277
+  CBNSUBFAM    278-278
+  REPWT1       279-284
+  REPWT2       285-290
+  REPWT3       291-296
+  REPWT4       297-302
+  REPWT5       303-308
+  REPWT6       309-314
+  REPWT7       315-320
+  REPWT8       321-326
+  REPWT9       327-332
+  REPWT10      333-338
+  REPWT11      339-344
+  REPWT12      345-350
+  REPWT13      351-356
+  REPWT14      357-362
+  REPWT15      363-368
+  REPWT16      369-374
+  REPWT17      375-380
+  REPWT18      381-386
+  REPWT19      387-392
+  REPWT20      393-398
+  REPWT21      399-404
+  REPWT22      405-410
+  REPWT23      411-416
+  REPWT24      417-422
+  REPWT25      423-428
+  REPWT26      429-434
+  REPWT27      435-440
+  REPWT28      441-446
+  REPWT29      447-452
+  REPWT30      453-458
+  REPWT31      459-464
+  REPWT32      465-470
+  REPWT33      471-476
+  REPWT34      477-482
+  REPWT35      483-488
+  REPWT36      489-494
+  REPWT37      495-500
+  REPWT38      501-506
+  REPWT39      507-512
+  REPWT40      513-518
+  REPWT41      519-524
+  REPWT42      525-530
+  REPWT43      531-536
+  REPWT44      537-542
+  REPWT45      543-548
+  REPWT46      549-554
+  REPWT47      555-560
+  REPWT48      561-566
+  REPWT49      567-572
+  REPWT50      573-578
+  REPWT51      579-584
+  REPWT52      585-590
+  REPWT53      591-596
+  REPWT54      597-602
+  REPWT55      603-608
+  REPWT56      609-614
+  REPWT57      615-620
+  REPWT58      621-626
+  REPWT59      627-632
+  REPWT60      633-638
+  REPWT61      639-644
+  REPWT62      645-650
+  REPWT63      651-656
+  REPWT64      657-662
+  REPWT65      663-668
+  REPWT66      669-674
+  REPWT67      675-680
+  REPWT68      681-686
+  REPWT69      687-692
+  REPWT70      693-698
+  REPWT71      699-704
+  REPWT72      705-710
+  REPWT73      711-716
+  REPWT74      717-722
+  REPWT75      723-728
+  REPWT76      729-734
+  REPWT77      735-740
+  REPWT78      741-746
+  REPWT79      747-752
+  REPWT80      753-758
+  RESPMODE     759-759
 ;
 
 label
@@ -304,6 +304,7 @@ label
   CINETHH    = "Access to internet"
   CILAPTOP   = "Laptop, desktop, or notebook computer"
   CISMRTPHN  = "Smartphone"
+  CITABLET   = "Tablet or other portable wireless computer"
   CIOTHCOMP  = "Other computer equipment"
   CIDATAPLN  = "Cellular data plan for a smartphone or other mobile device"
   CIHISPEED  = "Broadband (high speed) Internet service such as cable, fiber optic, or DSL service"
